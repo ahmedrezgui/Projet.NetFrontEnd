@@ -1,0 +1,76 @@
+/* Sidebar.css */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 600px;
+    width: 250px ;
+    border-radius: 7%;
+  
+    border-style:ridge;
+    margin: 2%;
+    background-color: aliceblue;
+  }
+  .sidebar-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 0;
+    cursor: pointer;
+    font-size: 24px; 
+    margin-top: 6%;
+    color: rgb(139, 141, 141);
+
+  }
+
+  .item
+  {
+    margin-left: 5%;
+    font-size: 20px;
+
+  }
+  
+
+  .userName{
+
+  margin: 5%;
+  font-family: fantasy;
+  font-size: 25px;
+  padding: 0;
+
+  }
+  .userStatus{
+    margin: 5%;
+    font-family: monospace;
+    font-size: 15px;
+    padding: 0;
+  }
+
+
+  .items{
+    margin-top: 25%;
+  }
+
+  .icon-size{
+    width: 100px;
+    height: 50px;
+    font-size: 50px;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .tickedDiv{
+    height: 1.6vw;
+    width: 0.3vw;
+    background-color: yellow;
+    margin-right: 0.7vw;
+    display: none;
+
+  }
+  .tickedDiv.visible {
+    display: block;
+    /* Add any other styles as needed */
+  }
+  .back{
+    background-color: black;
+  }
