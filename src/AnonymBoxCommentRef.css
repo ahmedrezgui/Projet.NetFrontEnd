@@ -1,0 +1,16 @@
+.refcontainer
+{
+    width: 20vw;
+    text-align: center;
+    background-color: #E5E5E5;
+    color:black ;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 42px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.active
+{
+    background-color: #F7C159;
+}

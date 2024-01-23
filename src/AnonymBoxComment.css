@@ -1,0 +1,42 @@
+.commentcontainer
+{
+    width: 31vw;
+    height: 20vh;
+    border-radius: 15px;
+    overflow-y: scroll;
+    background-color: #EBEBEB;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    
+}
+.comment
+{
+font-size: 18px;
+font-weight: 500;
+line-height: 42px;
+color: #746E6E;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:transparent; 
+    border-radius: 15px;
+
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #787777;
+    height: 7vh;
+    border-radius: 15px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
