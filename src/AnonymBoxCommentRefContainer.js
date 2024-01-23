@@ -1,6 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
 import './AnonymBoxCommentRefContainer.css';
+import './ScrollBar.css';
 import AnonymBoxCommentRef from './AnonymBoxCommentRef';
 function AnonymBoxCommentRefContainer() {
     const [data, setData] = useState([]);
