@@ -1,0 +1,17 @@
+.commentlistcontainer
+{
+    height: 40vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 2vw;
+    padding-left: 2vw;
+    border-radius: 15px;
+    overflow-y: scroll;
+    width: min-content;
+}
+.commentlist
+{
+    display: flex;
+    flex-direction: column;
+    gap:0.5vh;
+}

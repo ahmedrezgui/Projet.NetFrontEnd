@@ -1,0 +1,60 @@
+.gris
+{
+    background-color: #F3F2F2;
+}
+.rouge
+{
+    color: #C73A3A;
+}
+.marron
+{
+    background-color: #8F7E5B;
+}
+.taskcard
+{
+    border-radius: 19px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    padding: 1vw;
+    align-items: end;
+}
+.button
+{   width: max-content;
+    height: min-content;
+    border-radius: 19px;
+    padding: 1.5vw;
+    text-align: center;
+
+}
+.titre
+{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    max-width:15vw ;
+}
+.container
+{
+    display: flex ;
+    flex-direction: column;
+    gap: 1vh;
+}
+.deadline
+{
+    font-weight: 500;
+    font-size: 19;
+    line-height: 30px;
+}
+.link
+{
+    color: white;
+    text-decoration: none;
+}
+.iconcontainer
+{
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+}
