@@ -1,0 +1,207 @@
+.Big-container
+{
+  display: flex;
+  flex-direction: column;
+ 
+}
+.event-form {
+  font-family: "Inter", sans-serif ;
+    display: flex;
+    flex-wrap: nowrap ;
+  background-color: #EBEBEB;
+ }
+
+ .formtype{
+  margin-left:2px ;
+  margin-right:2px ;
+ }
+ .formtype:hover {
+    cursor: pointer;
+ }
+
+  /* Active/Clicked styles */
+   .formtype :active {
+    cursor: pointer; 
+  }
+
+ 
+  .container{
+    display: flex;
+    flex-wrap: nowrap ;
+    background-color: #EBEBEB;
+    height: 10%;
+  }
+
+  .right-panel-1 {
+    width: 60%;
+    padding: 5%;   
+    display: grid;
+    grid-template-columns: auto auto auto;  
+    padding-bottom: 0% ;
+    text-align: center;
+    
+    
+    /* Add your styles here */
+  }
+
+  .left-panel-1 {
+    width: 40%;
+    font-size: 180%;
+    font-weight:500 ;
+    padding: 3%;   
+    padding-bottom:0;
+    margin-bottom: 2%;
+    margin-right: 8%;
+    border-bottom: 2px groove black;
+
+
+    
+    /* Add your styles here */
+  }
+  
+  .sub-container{
+    display: flex;
+    flex-wrap: nowrap ;
+  }
+  .left-panel-sub {
+    background-color: white;
+    width: 50%;
+    
+    padding: 5%;
+    
+    /* Add your styles here */
+  }
+  .left-panel-2 {
+    background-color: white;
+    width: 40%;
+    margin: 2%;
+    margin-top:0;
+    padding-top: 3%;
+    padding-bottom:0;
+    padding-left: 0;
+    border : 1px solid #ced4da;
+    border-radius: 15px;
+    height: 700px !important;
+  
+    /* Add your styles here */
+  }
+  
+  .right-panel-sub {
+    background-color: white;
+    width: 50%;
+    padding: 5%;
+   
+    /* Add your styles here */
+  }
+
+  .right-panel-2 {
+    text-align: center;
+    background-color: white;
+    width: 60%;
+    margin: 2%;
+    padding: 5%;
+    border : 1px solid #ced4da;
+    border-radius: 15px;
+    margin-top:0;
+    height: 700px !important;
+
+
+    /* Add your styles here */
+  }
+  
+  
+ 
+  .event-form label {
+    display: block;
+    /* Add your styles here */
+  }
+  .input{
+    background-color: #E5E5E5 !important;
+    text-align: center;
+
+   
+  }
+.form-label{
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+/* styles.css */
+
+.full-width-select {
+  height: 100% ;
+  background-color: white  !important;
+  padding: 5%;
+  padding-left: 0;
+  margin-left: 0;
+  direction: rtl;
+  overflow: scroll ;
+  border-width: 0 !important;
+
+}
+.full-width-div {
+  height: 100% ;
+  background-color: white  !important;
+  padding: 5%;
+  padding-left: 0;
+  margin-left: 0;
+  border-width: 0 !important;
+
+}
+
+
+.centered-button-container {
+  
+  margin-top: 10%; /* Optional: Add margin for spacing */
+}
+
+button{
+  --bs-btn-bg:#4D4D4D !important;
+  border-radius: 19px !important;
+}
+
+.hour-label{
+  font-size: small;
+  
+}
+  
+.day-container{
+  margin-top: 5%;
+}
+.form-check{
+  font-size: 20px;
+  text-align: center;
+  padding: 4%;
+  direction:ltr !important;
+
+}
+
+
+.error{
+  font-size: 10px;
+  text-align: center;
+  color: red;
+
+
+}
+
+
+
+.full-width-select::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+  height: 5px;
+
+}
+
+.full-width-select::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 6px; /* Set the radius of the scrollbar thumb */
+}
+
+.full-width-select::-webkit-scrollbar-track {
+  background-color: #eee; /* Set the color of the scrollbar track */
+}
+.icon{
+ background-color: #4D4D4D !important;
+ width: 100%;
+}
+
