@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Profile from './profile';
 import TaskContainer from './TaskContainer';
 import AnonymBoxCommentRefContainer from './AnonymBoxCommentRefContainer';
 
@@ -18,6 +19,8 @@ function App() {
         <Route path="/Addevents" Component={AddWork}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
         <Route path='/comments' element={<AnonymBoxCommentRefContainer/>}/>
+                    <Route path='/profile' element={<Profile />} />
+
 
       </Routes>
     </Router>
