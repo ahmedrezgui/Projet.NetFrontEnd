@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTasks, faCalendarAlt, faUsers, faBell, faCog, faUser } from '@fortawesome/free-solid-svg-icons';
-import '..style/sidebar.css';
+import { faTasks, faCalendarAlt, faUsers, faBell, faCog } from '@fortawesome/free-solid-svg-icons';
+import '../style/sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({isAdmin}) => {
   const [activeItem, setActiveItem] = useState(null);
 
   const handleItemClick = (item) => {
-    setActiveItem(item);
+    setActiveItem(item); 
   };
 
   return (
@@ -18,7 +18,7 @@ const Sidebar = () => {
           <i className="bi bi-person-circle "></i>
         </div>
         <div>
-          <div className='userName'> cactus catus </div>
+          <div className='userName'>cactus cactus</div>
           <div className='userStatus'>ressources humaines</div>
         </div>
       </div>
@@ -43,14 +43,26 @@ const Sidebar = () => {
           <FontAwesomeIcon icon={faBell} />
           <div className='item'>Notifications </div>
         </div>
+        <div className="sidebar-item" style={{ color: activeItem === 'anonym' ? 'black' : 'grey' }} onClick={() => handleItemClick('anonym')}>
+          <div className={`tickedDiv ${activeItem === 'anonym' ? 'visible' : ''}`}></div>
+          <i class="bi bi-file-lock-fill"></i>
+          <div className='item'>anonymbox </div>
+       </div>
+       {isAdmin &&(
         <div className="sidebar-item" style={{ color: activeItem === 'manage' ? 'black' : 'grey' }} onClick={() => handleItemClick('manage')}>
           <div className={`tickedDiv ${activeItem === 'manage' ? 'visible' : ''}`}></div>
-          <FontAwesomeIcon icon={faCog} />
+          <i class="bi bi-person-fill"></i>
           <div className='item'>Manage </div>
-        </div>
+        </div>)}
       </div>
+      <div className="Settings" >
+      <i class="bi bi-gear-fill"></i>
+      <div className='item'> Settings </div>
+      </div>
+      <button className='out'>Log Out</button>
     </div>
     </div>
+
   );
 };
 
