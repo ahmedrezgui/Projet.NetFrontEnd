@@ -7,6 +7,7 @@ import AnonymBoxCommentRefContainer from './AnonymBoxCommentRefContainer';
 import CheckEvents from './Components/checkEvents';
 import AddWork from './Components/AddWork';
 import Login from './Components/Login';
+import Meeting from './Components/meeting';
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
         <Route path="/Addevents" Component={AddWork}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
         <Route path='/comments' element={<AnonymBoxCommentRefContainer/>}/>
-                    <Route path='/profile' element={<Profile />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/meeting' element={<Meeting />} />
 
 
       </Routes>
