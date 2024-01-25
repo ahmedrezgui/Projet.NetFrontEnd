@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TaskContainer from './TaskContainer';
-import AnonymBoxCommentRefContainer from './AnonymBoxCommentRefContainer';
+import ViewBoxSection from './ViewBoxSection';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/login"/>
         <Route path='/task' element={<TaskContainer/>}  />
-        <Route path='/comments' element={<AnonymBoxCommentRefContainer/>}/>
+        <Route path='/comments' element={<ViewBoxSection/>}/>
       </Routes>
     </Router>
   );

@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useImperativeHandle,useState } from 'react';
 import './AnonymBoxComment.css';
-import './ScrollBar.css';
 
-function AnonymBoxComment({comment}) {
-    return (
-            <div className='commentcontainer'>
-                <p className='comment'>
-                    {comment}
-                </p>
-            </div>  
-    );
-  }
-  
-  export default AnonymBoxComment;
-  
+const AnonymBoxComment = React.forwardRef((props, ref) => {
+  const [comment, setComment] = useState(props.comment);
+
+  // This function will be called when the parent component invokes ref.current.changeComment()
+  useImperativeHandle(ref, () => ({
+    changeComment: (newComment) => {
+      setComment(newComment);
+    },
+  }));
+
+  return (
+    <div className='anonymboxcomment'>
+      <div className='comment'>{comment}</div>
+    </div>
+  );
+});
+
+export default AnonymBoxComment;
