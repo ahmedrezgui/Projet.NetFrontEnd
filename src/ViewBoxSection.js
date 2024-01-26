@@ -17,7 +17,7 @@ function ViewBoxSection() {
                     <AnonymBoxCommentRefContainer onChildClick={setActive}></AnonymBoxCommentRefContainer>
                 </div>
                 <div className='commentsection'>
-                    <AnonymBoxComment ref={ref} comment="insert comment"></AnonymBoxComment>
+                    <AnonymBoxComment ref={ref} comment="select comment"></AnonymBoxComment>
                 </div>
             </div> 
     );

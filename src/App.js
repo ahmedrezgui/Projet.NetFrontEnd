@@ -8,7 +8,6 @@ import Login from './Components/Login';
 import ViewBoxSection from './ViewBoxSection';
 import Sidebar from './component/sidebar';
 
-
 function App() {
   const isAdmin = false; // Set your isAdmin logic here
   return (
@@ -18,16 +17,9 @@ function App() {
         <Route path="/events" Component={CheckEvents}></Route>
         <Route path="/Addevents" Component={AddWork}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
-
         <Route path='/comments' element={<ViewBoxSection/>}/>
-
-                    <Route path='/profile' element={<Profile />} />
-         <Route
-          path="/"
-          element={<Sidebar isAdmin={isAdmin} />}/>
-
-
-
+        <Route path='/profile' element={<Profile />} />
+        <Route path="/" element={<Sidebar isAdmin={isAdmin} />}/>
       </Routes>
     </Router>
 
