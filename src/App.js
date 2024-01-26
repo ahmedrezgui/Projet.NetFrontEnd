@@ -1,20 +1,32 @@
-
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Profile from './profile';
+import TaskContainer from './TaskContainer';
+import AnonymBoxCommentRefContainer from './AnonymBoxCommentRefContainer';
+
+import CheckEvents from './Components/checkEvents';
+import AddWork from './Components/AddWork';
+import Login from './Components/Login';
 import Sidebar from './component/sidebar';
 
 function App() {
   const isAdmin = false; // Set your isAdmin logic here
-
   return (
     <Router>
       <Routes>
-      <Route
+        <Route path='/login' element={<Login></Login>}> </Route>
+        <Route path="/events" Component={CheckEvents}></Route>
+        <Route path="/Addevents" Component={AddWork}></Route>
+        <Route path='/task' element={<TaskContainer/>}  />
+        <Route path='/comments' element={<AnonymBoxCommentRefContainer/>}/>
+                    <Route path='/profile' element={<Profile />} />
+         <Route
           path="/"
           element={<Sidebar isAdmin={isAdmin} />}
-        />        <Route path="/login"> </Route>
+
       </Routes>
     </Router>
+
   );
 }
 
