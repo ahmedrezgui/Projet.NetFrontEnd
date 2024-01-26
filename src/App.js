@@ -21,8 +21,8 @@ function App() {
 
         <Route path='/comments' element={<ViewBoxSection/>}/>
 
-                    <Route path='/profile' element={<Profile />} />
-         <Route
+        <Route path='/profile' element={<Profile />} />
+        <Route
           path="/"
           element={<Sidebar isAdmin={isAdmin} />}/>
 

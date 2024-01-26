@@ -52,7 +52,7 @@ function Profile() {
 
     return (
         <>
-            <div className="container h-screen flex justify-center" style={{ background: "#EBEBEB" }}>
+            <div className="h-screen flex  justify-center" style={{ background: "#EBEBEB" }}>
                 <div className="bg-white my-10 rounded-3xl mr-10 w-1/5">
 
                 </div>
