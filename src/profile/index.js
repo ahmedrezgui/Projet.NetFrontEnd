@@ -10,23 +10,25 @@ function Profile() {
     const [blamesBtn, setBlamesBtn] = useState(false);
     const [medBtn, setMedBtn] = useState(false);
 
-    const [user, setUser] = useState({});
-    // const getUserData = async () => {
-    //     try {
-    //         const response = await fetch(``, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Cookie': `access-token=${cookies["access-token"]}`,
-    //             },
-    //             credentials: "include",
-    //         });
-    //         const data = await response.json();
-    //         setUser(data.user);
-    //     } catch (error) {
-    //         console.log("Error: " + error);
-    //     }
-    // }
+    const [user, setUser] = useState();
+    const userId = "3272f258-92e8-473b-ae8e-6e4624964412"
+    const getUserData = async () => {
+        try {
+            const response = await fetch(`https://localhost:7181/api/Profile/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'Cookie': `access-token=${cookies["access-token"]}`,
+                },
+                // credentials: "include",
+            });
+            const data = await response.json();
+            setUser(data);
+            console.log(data);
+        } catch (error) {
+            console.log("Error: " + error);
+        }
+    }
 
 
     const handleHistory = () => {
@@ -44,9 +46,9 @@ function Profile() {
         setBlamesBtn(false);
         setMedBtn(true);
     }
-    // useEffect(() => {
-    //     getUserData();
-    // }, []);
+    useEffect(() => {
+        getUserData();
+    }, []);
 
     return (
         <>
@@ -81,7 +83,7 @@ function Profile() {
                                     histBtn ? <Historique /> : null
                                 }
                                 {
-                                    blamesBtn ? <Blames /> : null
+                                    blamesBtn ? <Blames data={user} /> : null
                                 }
                                 {
                                     medBtn ? <Medaille /> : null
