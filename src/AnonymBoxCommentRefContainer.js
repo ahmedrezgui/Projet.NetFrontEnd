@@ -20,17 +20,17 @@ const AnonymBoxCommentRefContainer = ({ onChildClick }) => {
   const buttonRefs = data.map(() => createRef());
 
   const handleClick = (index) => () => {
-    const commentlist = document.querySelectorAll(".refcontainer");
+    const commentlist = document.querySelectorAll(".anas-refcontainer");
     for (let i = 0; i < commentlist.length; i++) {
-      commentlist[i].classList.remove("active");
+      commentlist[i].classList.remove("anas-active");
     }
-    buttonRefs[index].current.querySelector(".refcontainer").classList.add("active")
+    buttonRefs[index].current.querySelector(".anas-refcontainer").classList.add("anas-active")
     onChildClick(data[index].contenu);
   };
 
   return (
-    <div className='commentlistcontainer'>
-      <div className='commentlist'>
+    <div className='anas-commentlistcontainer'>
+      <div className='anas-commentlist'>
         {data.map((item, index) => (
           <div ref={buttonRefs[index]} onClick={handleClick(index)} key={index + 1}>
             <AnonymBoxCommentRef reference={data.length - index} />

@@ -17,7 +17,7 @@ function TaskContainer() {
     }, []);
 
     return (
-            <div className='taskcardcontainer'>
+            <div className='anas-taskcardcontainer'>
                 {data.map(item=>(<TaskCard title={item.Name} deadline={item.DeadLine}></TaskCard>))}    
             </div>
        

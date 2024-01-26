@@ -1,4 +1,4 @@
-.commentcontainer
+.anas-commentcontainer
 {
     width: 31vw;
     height: 20vh;
@@ -9,7 +9,7 @@
     padding-right: 1vw;
     
 }
-.comment
+.anas-comment
 {
 font-size: 18px;
 font-weight: 500;

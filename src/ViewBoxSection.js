@@ -10,13 +10,13 @@ function ViewBoxSection() {
     }
 
     return (
-            <div className='viewboxcontainer'>
-                <div className='anonymboxcommentrefcontainersection'>
-                    <div className='anonymboxcommentrefcontainerlabel'>Select the message :</div>
-                    <div className='line'></div>
+            <div className='anas-viewboxcontainer'>
+                <div className='anas-anonymboxcommentrefcontainersection'>
+                    <div className='anas-anonymboxcommentrefcontainerlabel'>Select the message :</div>
+                    <div className='anas-line'></div>
                     <AnonymBoxCommentRefContainer onChildClick={setActive}></AnonymBoxCommentRefContainer>
                 </div>
-                <div className='commentsection'>
+                <div className='anas-commentsection'>
                     <AnonymBoxComment ref={ref} comment="select comment"></AnonymBoxComment>
                 </div>
             </div> 

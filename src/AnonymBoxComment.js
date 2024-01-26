@@ -12,8 +12,8 @@ const AnonymBoxComment = React.forwardRef((props, ref) => {
   }));
 
   return (
-    <div className='anonymboxcomment'>
-      <div className='comment'>{comment}</div>
+    <div className='anas-anonymboxcomment'>
+      <div className='anas-comment'>{comment}</div>
     </div>
   );
 });
