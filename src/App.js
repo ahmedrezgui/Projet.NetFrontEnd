@@ -22,7 +22,8 @@ function App() {
                     <Route path='/profile' element={<Profile />} />
          <Route
           path="/"
-          element={<Sidebar isAdmin={isAdmin} />}
+          element={<Sidebar isAdmin={isAdmin} />}/>
+
 
       </Routes>
     </Router>

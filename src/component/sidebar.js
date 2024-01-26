@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faCalendarAlt, faUsers, faBell, faCog } from '@fortawesome/free-solid-svg-icons';
-import '../style/sidebar.css';
+import '../Style/sidebar.css';
 
 const Sidebar = ({isAdmin}) => {
   const [activeItem, setActiveItem] = useState(null);
