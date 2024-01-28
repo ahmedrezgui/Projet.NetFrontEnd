@@ -1,0 +1,26 @@
+.anas-anonymbox
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    align-items: center;
+    width: min-content;  
+}
+.anas-anonymboxheader
+{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+.anas-anonymboxheaderbuttoncontainer
+{
+    transition-duration: 0.3s;
+    transition-timing-function:ease-in-out;
+}
+.anas-anonymboxmain
+{
+    transition-duration: 0.3s;
+    transition-timing-function:ease-in-out; 
+}
