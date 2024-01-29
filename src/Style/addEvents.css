@@ -1,8 +1,24 @@
+/*.form-control{
+  display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}*/
 .Big-container
 {
   display: flex;
+  gap: 0;
   flex-direction: column;
- 
+   
 }
 .event-form {
   font-family: "Inter", sans-serif ;
@@ -25,7 +41,7 @@
   }
 
  
-  .container{
+  .conteneur{
     display: flex;
     flex-wrap: nowrap ;
     background-color: #EBEBEB;
@@ -154,7 +170,7 @@
   margin-top: 10%; /* Optional: Add margin for spacing */
 }
 
-button{
+.buttonform{
   --bs-btn-bg:#4D4D4D !important;
   border-radius: 19px !important;
 }
