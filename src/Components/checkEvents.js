@@ -128,8 +128,7 @@ const CheckEvents = () => {
             <div className='eventDesc'> {event.description} </div>
           </div>
           <div className='buttonContainer'>
-          <button onClick={() => handleCLick(event.id)}>More Info</button>
-
+            <button onClick={handleCLick(event.id)}>More Info</button>
             </div>
 
           </div>
