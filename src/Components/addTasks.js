@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../Style/addEvents.css';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import MembersSelect from './membersSelect';
 
   
@@ -101,7 +101,7 @@ const AddTasks = (props) => {
 
         {/* Submit Button */}
         <div className='centered-button-container '>
-        <Button variant="primary" type="submit" className='button' >
+        <Button variant="primary" type="submit" className='buttonform' >
           Confirm
         </Button>
         </div>

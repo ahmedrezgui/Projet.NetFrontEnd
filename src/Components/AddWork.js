@@ -85,7 +85,7 @@ const AddWork = () => {
 return (
 
     <Container className='Big-container'>
-      <div className='container'>
+      <div className='conteneur'>
       <div className='left-panel-1'>
         Select Member
       </div>
