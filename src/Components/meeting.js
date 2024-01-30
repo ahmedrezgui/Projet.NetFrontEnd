@@ -1,6 +1,36 @@
+import { useEffect, useState } from "react";
 import MeetingItem from "./meetingItems";
+import axios from 'axios';
+import Cookies from 'js-cookie';
+const upcomingMeetingUrl = 'https://localhost:7181/api/meetings/upcoming';
+
+
 
 function Meeting(){
+    const [meetingData, setMeetingData]= useState([])
+    useEffect(()=>{
+        axios.get(upcomingMeetingUrl,{
+            withCredentials: true,
+            headers: {
+                'Access-Control-Allow-Origin': '*', 
+                'Accept': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            
+        })
+        .then(response => {
+            setMeetingData(response.data)
+            console.log('Upcoming Meeting Data:', meetingData);
+        })
+        .catch((error)=> {
+            console.error('Error fetching upcoming meeting data:', error.message);
+        });
+        // use fetch to get data then with response.json() to get the data
+        /// specify the token JwtToken in header
+        // get token from c
+
+    },[])
+
     const currentDate = new Intl.DateTimeFormat("en-us",{
         weekday: "long",
         month: "long",
@@ -14,18 +44,24 @@ function Meeting(){
     return(
         <div className="meeting-container w-3/4 ml-[100px]">
             <div className="time">
-                <h1 className="text-[50px] text-extrabold">
+                <h1 className="text-[50px] font-extrabold">
                     <span>{day}, {date}</span>
                 </h1>
-                <h2 className="text-[30px] text-medium">
+                <h2 className="text-[30px] font-medium">
                     <span>{month}</span>
                 </h2>
             </div>
-            <div className="header text-[50px] text-medium">
+            <div className="header text-[50px] font-medium mt-[60px]">
                 Meetings / Workshops
             </div>
-            <div className="meetings-items-container">
-                <MeetingItem></MeetingItem>
+            <div className="meetings-items-container flex flex-col gap-[20px] mt-[30px]">
+                {
+                    meetingData.map((meeting)=>{
+                        return(
+                            <MeetingItem meetingData={meeting}/>
+                        )
+                    })
+                }
             </div>
         </div>
     )
