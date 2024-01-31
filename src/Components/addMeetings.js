@@ -88,6 +88,8 @@ const AddMeetings = (props) => {
 
    return(
 
+
+
       <Form className='event-form ' onSubmit={handleSubmit}        >
 
 <MembersSelect members={props.members} 
@@ -149,15 +151,15 @@ const AddMeetings = (props) => {
        
 
         {/* Submit Button */}
-        <div className='centered-button-container '>
-        <Button variant="primary" type="submit" className='buttonform' >
+        <div className='centered-button-container ' style={{height:"5vh"}}>
+        <Button variant="primary" type="submit" className='buttonform'>
           Confirm
         </Button>
         </div>
         </div>
       </Form>
-    
-   
+
+
     );
   }
 export default AddMeetings;
