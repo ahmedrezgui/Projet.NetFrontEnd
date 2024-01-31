@@ -8,6 +8,7 @@ import Login from './Components/Login';
 import Sidebar from './component/sidebar';
 import AnonymBox from './AnonymBox';
 import  ViewBoxSection from './ViewBoxSection';
+import AdminFunctionalities from "./Components/AdminFunctionalities";
 
 function App() {
   const isAdmin = false; // Set your isAdmin logic here
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login></Login>}> </Route>
         <Route path="/events" Component={CheckEvents}></Route>
-        <Route path="/Addevents" Component={AddWork}></Route>
+        <Route path="/functionalities" Component={AdminFunctionalities}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
 
         <Route path='/anonymbox' element={<AnonymBox/>}/>

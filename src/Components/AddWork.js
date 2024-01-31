@@ -4,12 +4,15 @@ import { Container } from 'react-bootstrap';
 import AddEvents from './addEvents';
 import AddTasks from './addTasks';
 import AddMeetings from './addMeetings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
   
 
-const AddWork = () => {  
-    const [state, setState] = useState('');
+const AddWork = () => {
+    const [state, setState] = useState('Task');
     const [members, setMembers] = useState([]);
+
 
    
   useEffect(() => {
@@ -81,42 +84,70 @@ const AddWork = () => {
     ];
 
     setMembers(data2);
-  }, []); 
-return (
+  }, []);
+return (<>
 
-    <Container className='Big-container'>
-      <div className='conteneur'>
-      <div className='left-panel-1'>
-        Select Member
-      </div>
-      <div className='right-panel-1'>
-        <div className='formtype' style={{backgroundColor : state==="Task" ? '#F7C159' : ' #CCCAC7'}}
-         onClick={(e)=>{e.preventDefault();
-         setState('Task');}}>
-          Task
-        </div>
-        <div  className='formtype' style={{backgroundColor : state==="Meeting" ? '#F7C159' : ' #CCCAC7'}}
-         onClick={(e)=>{e.preventDefault();
-            setState('Meeting');
+
+
+          <div style={{width: "90%",height:"90vh",borderRadius:"3vh"}}>
+
+            <Container className='Big-container' style={{
+              width: "100vh",
+              marginLeft: "5vh",
+              borderRadius: "3vh",
+              backgroundColor: "rgb(235, 235, 235)"
             }}>
-          Meeting
-        </div>
-        <div  className='formtype' style={{backgroundColor : state==="Event" ? '#F7C159' : ' #CCCAC7'}}
-         onClick={(e)=>{e.preventDefault();
-            setState('Event');}}>
-          Event
-        </div>
-      </div>
-      </div>
-      {state === 'Event' ? (
-        <AddEvents members={members} />
-      ) : state === 'Meeting' ? (
-        <AddMeetings members={members} />
-      ) : (
-        <AddTasks members={members} />
-      )}
+              <form className="search-form">
+                <div className="input-wrapper">
+                  <input type="text" placeholder="Search..."/>
+                  <div className="icon-placeholder">
+                    <FontAwesomeIcon icon={faSearch}/>
+                  </div>
+                </div>
+              </form>
+              <div className='conteneur'>
 
-      </Container>
+                <div className='left-panel-1'>
+                  Select Member
+                </div>
+                <div className='right-panel-1'>
+                  <div className='formtype' style={{backgroundColor: state === "Task" ? '#F7C159' : ' #CCCAC7'}}
+                       onClick={(e) => {
+                         e.preventDefault();
+                         setState('Task');
+                       }}>
+                    Task
+                  </div>
+                  <div className='formtype' style={{backgroundColor: state === "Meeting" ? '#F7C159' : ' #CCCAC7'}}
+                       onClick={(e) => {
+                         e.preventDefault();
+                         setState('Meeting');
+                       }}>
+                    Meeting
+                  </div>
+                  <div className='formtype' style={{backgroundColor: state === "Event" ? '#F7C159' : ' #CCCAC7'}}
+                       onClick={(e) => {
+                         e.preventDefault();
+                         setState('Event');
+                       }}>
+                    Event
+                  </div>
+                </div>
+              </div>
+              {state === 'Event' ? (
+                  <AddEvents members={members}/>
+              ) : state === 'Meeting' ? (
+                  <AddMeetings members={members}/>
+              ) : (
+                  <AddTasks members={members}/>
+              )}
+
+            </Container>
+          </div>
+
+
+
+    </>
 )
 }
 export default AddWork;
