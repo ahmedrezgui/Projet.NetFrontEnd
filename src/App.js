@@ -17,9 +17,18 @@ function App() {
         <Route path="/events" Component={CheckEvents}></Route>
         <Route path="/Addevents" Component={AddWork}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
+
         <Route path='/anonymbox' element={<AnonymBox/>}/>
         <Route path='/profile' element={<Profile />} />
         <Route path="/" element={<Sidebar isAdmin={isAdmin} />}/>
+
+
+        <Route path='/comments' element={<ViewBoxSection/>}/>
+
+
+
+
+
       </Routes>
     </Router>
   );
