@@ -5,9 +5,8 @@ import TaskContainer from './TaskContainer';
 import CheckEvents from './Components/checkEvents';
 import AddWork from './Components/AddWork';
 import Login from './Components/Login';
-import ViewBoxSection from './ViewBoxSection';
 import Sidebar from './component/sidebar';
-
+import AnonymBox from './AnonymBox';
 
 function App() {
   const isAdmin = false; // Set your isAdmin logic here
@@ -19,18 +18,19 @@ function App() {
         <Route path="/Addevents" Component={AddWork}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
 
+        <Route path='/anonymbox' element={<AnonymBox/>}/>
+        <Route path='/profile' element={<Profile />} />
+        <Route path="/" element={<Sidebar isAdmin={isAdmin} />}/>
+
+
         <Route path='/comments' element={<ViewBoxSection/>}/>
 
-        <Route path='/profile' element={<Profile />} />
-        <Route
-          path="/"
-          element={<Sidebar isAdmin={isAdmin} />}/>
+
 
 
 
       </Routes>
     </Router>
-
   );
 }
 

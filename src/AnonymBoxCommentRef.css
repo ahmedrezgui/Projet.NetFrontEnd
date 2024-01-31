@@ -1,4 +1,4 @@
-.refcontainer
+.anas-refcontainer
 {
     width: 20vw;
     text-align: center;
@@ -12,7 +12,7 @@
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
-.active
+.anas-active
 {
     background-color: #F7C159;
 }

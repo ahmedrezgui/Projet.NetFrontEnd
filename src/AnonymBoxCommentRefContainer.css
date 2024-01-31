@@ -1,4 +1,4 @@
-.commentlistcontainer
+.anas-commentlistcontainer
 {
     height: 50vh;
     padding-top: 1vh;
@@ -10,7 +10,7 @@
     width: min-content;
     background-color: white;
 }
-.commentlist
+.anas-commentlist
 {
     display: flex;
     flex-direction: column;

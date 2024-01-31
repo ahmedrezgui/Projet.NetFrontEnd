@@ -1,4 +1,4 @@
-.viewboxcontainer
+.anas-viewboxcontainer
 {
     background-color: #EBEBEB;
     display: flex;
@@ -7,31 +7,28 @@
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    width: min-content;
+    height: 70vh;
+    width: 48vw;
 }
-.anonymboxcommentrefcontainersection
+.anas-anonymboxcommentrefcontainersection
 {
     display: flex;
     flex-direction: column;
     gap: 2vh;
     
 }
-.anonymboxcommentrefcontainerlabel
+.anas-anonymboxcommentrefcontainerlabel
 {
     font-size: 30px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
-.line 
+.anas-line 
 {
     border-top: 1px solid #000;
 }
-.commentsection
+.anas-commentsection
 {   
     height: 40vh;
     display: flex;
