@@ -7,6 +7,7 @@ import AddWork from './Components/AddWork';
 import Login from './Components/Login';
 import Sidebar from './component/sidebar';
 import AnonymBox from './AnonymBox';
+import  ViewBoxSection from './ViewBoxSection';
 
 function App() {
   const isAdmin = false; // Set your isAdmin logic here
