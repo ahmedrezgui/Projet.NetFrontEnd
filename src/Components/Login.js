@@ -42,33 +42,36 @@ const Login = () => {
       return;
     }
 
-    try {
-      const response = await axios.post('https://localhost:7181/Auth/login', {
-        Email: email,
-        Password: password,
-      }, { withCredentials: true });
+      try {
+          const response = await axios.post('https://localhost:7181/Auth/login', {
+              Email: email,
+              Password: password,
+          }, { withCredentials: true });
 
-      if (response.status === 200) {
-        const data = response.data;
-        console.log('Login successful:', data);
+          if (response.status === 200) {
+              const data = response.data;
 
-        // Extract the JWT token from the response
-        const jwtToken = data.JwtToken;
 
-        // Set the JWT token in the browser's cookies
-        Cookies.set('JwtToken', jwtToken, { expires: 1, secure: true, sameSite: 'None' });
+              // Extract the JWT token from the response
+              const jwtToken = data.token;
 
-      } else {
-        const errorData = response.data;
-        console.error('Login failed:', errorData);
+              // Set the JWT token in the browser's local storage
+              localStorage.setItem('JwtToken', jwtToken);
+
+
+
+          } else {
+              const errorData = response.data;
+              console.error('Login failed:', errorData);
+          }
       }
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        setPasswordError('Invalid email or password');
-      } else {
-        setPasswordError('An error occurred during login');
+      catch (error) {
+          if (error.response && error.response.status === 401) {
+              setPasswordError('Invalid email or password');
+          } else {
+              setPasswordError('An error occurred during login');
+          }
       }
-    }
   };
 
   const handleRememberMeChange = () => {

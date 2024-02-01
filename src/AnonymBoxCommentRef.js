@@ -1,12 +1,12 @@
 import React from 'react';
 import './AnonymBoxCommentRef.css';
-function AnonymBoxCommentRef({reference,comment}) {
+const AnonymBoxCommentRef=React.forwardRef(({reference})=> {  
     return (
-            <div className='refcontainer'>
+            <div className='anas-refcontainer'>
                 Message {reference}
             </div>
     );
   }
-  
+)
   export default AnonymBoxCommentRef;
   

@@ -170,7 +170,7 @@ const AddEvents = (props) => {
 
         {/* Submit Button */}
         <div className='centered-button-container '>
-        <Button variant="primary" type="submit" className='button' >
+        <Button variant="primary" type="submit" className='buttonform' style={{height:"4vh"}} >
           Confirm
         </Button>
         </div>

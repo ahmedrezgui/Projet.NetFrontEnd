@@ -1,15 +1,16 @@
-.commentlistcontainer
+.anas-commentlistcontainer
 {
-    height: 40vh;
+    height: 50vh;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    padding-right: 2vw;
-    padding-left: 2vw;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
     border-radius: 15px;
     overflow-y: scroll;
     width: min-content;
+    background-color: white;
 }
-.commentlist
+.anas-commentlist
 {
     display: flex;
     flex-direction: column;

@@ -1,16 +1,16 @@
-.gris
+.anas-gris
 {
     background-color: #F3F2F2;
 }
-.rouge
+.anas-rouge
 {
     color: #C73A3A;
 }
-.marron
+.anas-marron
 {
     background-color: #8F7E5B;
 }
-.taskcard
+.anas-taskcard
 {
     border-radius: 19px;
     width: fit-content;
@@ -20,39 +20,38 @@
     padding: 1vw;
     align-items: end;
 }
-.button
+.anas-button
 {   width: max-content;
     height: min-content;
     border-radius: 19px;
     padding: 1.5vw;
     text-align: center;
-
 }
-.titre
+.anas-titre
 {
     font-weight: 500;
     font-size: 25px;
     line-height: 30px;
     max-width:15vw ;
 }
-.container
+.anas-container
 {
     display: flex ;
     flex-direction: column;
     gap: 1vh;
 }
-.deadline
+.anas-deadline
 {
     font-weight: 500;
     font-size: 19;
     line-height: 30px;
 }
-.link
+.anas-link
 {
     color: white;
     text-decoration: none;
 }
-.iconcontainer
+.anas-iconcontainer
 {
     display: flex;
     flex-direction: row;

@@ -3,20 +3,20 @@ import './TaskCard.css';
 import Icon from './icon';
 function TaskCard({title,deadline}) {
     return (
-            <div className='taskcard gris'>
-                <div className='container'>
-                    <div className='titre'> {title}
+            <div className='anas-taskcard anas-gris'>
+                <div className='anas-container'>
+                    <div className='anas-titre'> {title}
                     </div>
-                    <div className='deadline rouge'>
+                    <div className='anas-deadline anas-rouge'>
                     {deadline}
                     </div>
-                    <div className='iconcontainer'>
+                    <div className='anas-iconcontainer'>
                         <Icon></Icon>
                         <Icon></Icon>
                     </div>
                 </div>
-                <div className='button marron'>
-                    <a className='link' href='https://drive.google.com/drive/folders/1vE7Kmt-XmUua7urzfDqhPcje5heUOqeG?usp=drive_link' target='_blank'>
+                <div className='anas-button anas-marron'>
+                    <a className='anas-link' href='https://drive.google.com/drive/folders/1vE7Kmt-XmUua7urzfDqhPcje5heUOqeG?usp=drive_link' target='_blank'>
                         Drive Equipe
                     </a>
                 </div>

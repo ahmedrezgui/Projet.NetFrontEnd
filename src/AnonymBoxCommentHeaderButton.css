@@ -1,0 +1,15 @@
+.anas-anonymboxcommentheaderbutton
+{   
+    background: transparent;
+    width: 18vw;
+    text-align: center;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: center;
+    cursor:pointer
+}
