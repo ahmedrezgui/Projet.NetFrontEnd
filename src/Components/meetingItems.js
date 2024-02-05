@@ -1,5 +1,5 @@
 function MeetingItem({meetingData}){
-    const dateObject = new Date(meetingData?.Date);
+    const dateObject = new Date(meetingData?.date);
     const formattedDate = new Intl.DateTimeFormat("en-us",{
         day: "numeric",
         month: "long",
@@ -21,13 +21,13 @@ function MeetingItem({meetingData}){
             </div>
             <div className="meeting-info w-full">
                 <h2 className="meeting-title text-[38px] font-semibold">
-                    {meetingData?.Name}
+                    {meetingData?.name}
                 </h2>
                 <p className="meeting-location text-xl">
-                    {meetingData?.Location}
+                    {meetingData?.location}
                 </p>
                 <p className="meeting-description text-xl">
-                    {meetingData?.Description}
+                    {meetingData?.description}
                 </p>
             </div>
             <div className="confirmation-buttons flex flex-col justify-center gap-[20px] w-[150px] h-full text-white font-black">

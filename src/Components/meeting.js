@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
 import MeetingItem from "./meetingItems";
 import axios from 'axios';
-import Cookies from 'js-cookie';
 const upcomingMeetingUrl = 'https://localhost:7181/api/meetings/upcoming';
-
+const token = localStorage.getItem('JwtToken');
+console.log(token)
 
 
 function Meeting(){
     const [meetingData, setMeetingData]= useState([])
+   
     useEffect(()=>{
         axios.get(upcomingMeetingUrl,{
             withCredentials: true,
             headers: {
+                'Authorization': "Bearer "+ token,
                 'Access-Control-Allow-Origin': '*', 
                 'Accept': 'application/json',
-                'Access-Control-Allow-Credentials': 'true',
+
             },
             
         })
         .then(response => {
+            console.log("response: " , response.data)
             setMeetingData(response.data)
             console.log('Upcoming Meeting Data:', meetingData);
         })
@@ -29,7 +32,7 @@ function Meeting(){
         /// specify the token JwtToken in header
         // get token from c
 
-    },[])
+    },[meetingData])
 
     const currentDate = new Intl.DateTimeFormat("en-us",{
         weekday: "long",
