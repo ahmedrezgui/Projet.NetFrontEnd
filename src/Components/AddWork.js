@@ -13,78 +13,38 @@ const AddWork = () => {
     const [state, setState] = useState('Task');
     const [members, setMembers] = useState([]);
 
+    useEffect(() => {
 
-   
-  useEffect(() => {
-    const data2 = [
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
-      },
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
-      },
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
-      },
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
+    const fetchMembers = async () => {
+      try {
+        let token=localStorage.getItem('JwtToken');
+        // Fetch data from the API
+        const response = await fetch('https://localhost:7181/Auth',{
+          headers:{
+          'Authorization':'bearer '+token,
+          }
+        });
+        // Check if the response is successful
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        // Parse the JSON data
+        const data = await response.json();
+        console.log(data);
+        // Update the state with the fetched events
+      
+        setMembers(data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
       }
-    ];
+    };
 
-    setMembers(data2);
-  }, []);
+    // Call the fetchEvents function
+    fetchMembers();
+  }, []); // Empty dependency array ensures the effect runs only once (on mount)
+  
+
 return (<>
 
 

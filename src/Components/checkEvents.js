@@ -9,9 +9,14 @@ const CheckEvents = () => {
     // Function to fetch data
     const fetchEvents = async () => {
       try {
-        // Fetch data from the API
-        const response = await fetch('https://localhost:7181/api/Events');
+        let token=localStorage.getItem('JwtToken');
 
+        // Fetch data from the API
+        const response = await fetch('https://localhost:7181/api/Events',{
+          headers:{
+          'Authorization':'bearer '+token,
+          }
+        });
         // Check if the response is successful
         if (!response.ok) {
           throw new Error('Network response was not ok');
