@@ -1,5 +1,6 @@
 import React ,{useState , useEffect} from 'react';
 import '../Style/addEvents.css';
+import Sidebar from '../component/sidebar'
 
 import AddWork from "./AddWork";
 
@@ -9,8 +10,8 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
     return (<>
 
             <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"150vh"}}>
-                <div className="bg-white my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
-
+                <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
+                <Sidebar ></Sidebar>
                 </div >
                 <div style={{backgroundColor:"white",height:"130vh",marginTop:"6vh",borderRadius:"4vh"}}>
                     <div className="row-span-1 grid grid-cols-4 w-full px-10 pt-6 pb-4"  >

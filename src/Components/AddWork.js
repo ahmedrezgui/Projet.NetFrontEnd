@@ -12,6 +12,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const AddWork = () => {
     const [state, setState] = useState('Task');
     const [members, setMembers] = useState([]);
+    const [allMembers, setAllMembers] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+
+
 
     useEffect(() => {
 
@@ -31,9 +35,10 @@ const AddWork = () => {
 
         // Parse the JSON data
         const data = await response.json();
-        console.log(data);
+
         // Update the state with the fetched events
       
+        setAllMembers(data);
         setMembers(data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -43,7 +48,28 @@ const AddWork = () => {
     // Call the fetchEvents function
     fetchMembers();
   }, []); // Empty dependency array ensures the effect runs only once (on mount)
-  
+
+    const handleInputChange = (e) => {
+        let inputValue = e.target.value;
+        setSearchValue(inputValue);
+        if (!inputValue) {
+            setMembers(allMembers);
+            return;
+        }
+        inputValue=inputValue.toLowerCase();
+        let mmbr=[];
+
+        allMembers.map((member) => {
+           let memberFirstName=member.firstName.toLowerCase();
+           let memberLastName=member.lastName.toLowerCase();
+           let memberFullName=memberFirstName+" "+memberLastName;
+           let memberReverseFullName=memberLastName+" "+memberFirstName;
+            if(memberFirstName.startsWith(inputValue) || memberLastName.startsWith(inputValue) || memberReverseFullName.startsWith(inputValue) || memberFullName.startsWith(inputValue)){
+                mmbr.push(member);
+            }
+        })
+       setMembers(mmbr);
+    };
 
 return (<>
 
@@ -57,9 +83,9 @@ return (<>
               borderRadius: "3vh",
               backgroundColor: "rgb(235, 235, 235)"
             }}>
-              <form className="search-form">
+              <form className="search-form" >
                 <div className="input-wrapper">
-                  <input type="text" placeholder="Search..."/>
+                  <input type="text" placeholder="Search..." value={searchValue} onChange={handleInputChange}/>
                   <div className="icon-placeholder">
                     <FontAwesomeIcon icon={faSearch}/>
                   </div>
@@ -70,41 +96,40 @@ return (<>
                 <div className='left-panel-1'>
                   Select Member
                 </div>
-                <div className='right-panel-1'>
-                  <div className='formtype' style={{backgroundColor: state === "Task" ? '#F7C159' : ' #CCCAC7'}}
-                       onClick={(e) => {
-                         e.preventDefault();
-                         setState('Task');
-                       }}>
-                    Task
+                  <div className='right-panel-1'>
+                      <div className='formtype' style={{backgroundColor: state === "Task" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Task');
+                           }}>
+                          Task
+                      </div>
+                      <div className='formtype' style={{backgroundColor: state === "Meeting" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Meeting');
+                           }}>
+                          Meeting
+                      </div>
+                      <div className='formtype' style={{backgroundColor: state === "Event" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Event');
+                           }}>
+                          Event
+                      </div>
                   </div>
-                  <div className='formtype' style={{backgroundColor: state === "Meeting" ? '#F7C159' : ' #CCCAC7'}}
-                       onClick={(e) => {
-                         e.preventDefault();
-                         setState('Meeting');
-                       }}>
-                    Meeting
-                  </div>
-                  <div className='formtype' style={{backgroundColor: state === "Event" ? '#F7C159' : ' #CCCAC7'}}
-                       onClick={(e) => {
-                         e.preventDefault();
-                         setState('Event');
-                       }}>
-                    Event
-                  </div>
-                </div>
               </div>
-              {state === 'Event' ? (
-                  <AddEvents members={members}/>
-              ) : state === 'Meeting' ? (
-                  <AddMeetings members={members}/>
-              ) : (
-                  <AddTasks members={members}/>
-              )}
+                {state === 'Event' ? (
+                    <AddEvents members={members}/>
+                ) : state === 'Meeting' ? (
+                    <AddMeetings members={members}/>
+                ) : (
+                    <AddTasks members={members}/>
+                )}
 
             </Container>
           </div>
-
 
 
     </>
