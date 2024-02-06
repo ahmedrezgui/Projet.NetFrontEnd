@@ -96,41 +96,40 @@ return (<>
                 <div className='left-panel-1'>
                   Select Member
                 </div>
-                <div className='right-panel-1'>
-                  <div className='formtype' style={{backgroundColor: state === "Task" ? '#F7C159' : ' #CCCAC7'}}
-                       onClick={(e) => {
-                         e.preventDefault();
-                         setState('Task');
-                       }}>
-                    Task
+                  <div className='right-panel-1'>
+                      <div className='formtype' style={{backgroundColor: state === "Task" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Task');
+                           }}>
+                          Task
+                      </div>
+                      <div className='formtype' style={{backgroundColor: state === "Meeting" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Meeting');
+                           }}>
+                          Meeting
+                      </div>
+                      <div className='formtype' style={{backgroundColor: state === "Event" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Event');
+                           }}>
+                          Event
+                      </div>
                   </div>
-                  <div className='formtype' style={{backgroundColor: state === "Meeting" ? '#F7C159' : ' #CCCAC7'}}
-                       onClick={(e) => {
-                         e.preventDefault();
-                         setState('Meeting');
-                       }}>
-                    Meeting
-                  </div>
-                  <div className='formtype' style={{backgroundColor: state === "Event" ? '#F7C159' : ' #CCCAC7'}}
-                       onClick={(e) => {
-                         e.preventDefault();
-                         setState('Event');
-                       }}>
-                    Event
-                  </div>
-                </div>
               </div>
-              {state === 'Event' ? (
-                  <AddEvents members={members}/>
-              ) : state === 'Meeting' ? (
-                  <AddMeetings members={members}/>
-              ) : (
-                  <AddTasks members={members}/>
-              )}
+                {state === 'Event' ? (
+                    <AddEvents members={members}/>
+                ) : state === 'Meeting' ? (
+                    <AddMeetings members={members}/>
+                ) : (
+                    <AddTasks members={members}/>
+                )}
 
             </Container>
           </div>
-
 
 
     </>
