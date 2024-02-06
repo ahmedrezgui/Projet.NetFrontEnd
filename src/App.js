@@ -11,6 +11,8 @@ import Sidebar from './component/sidebar';
 import AnonymBox from './AnonymBox';
 import  ViewBoxSection from './ViewBoxSection';
 import AdminFunctionalities from "./Components/AdminFunctionalities";
+import Scan from './Components/scan';
+import Confirm from './Components/confirm';
 
 function App() {
   const isAdmin = false; // Set your isAdmin logic here
@@ -26,6 +28,7 @@ function App() {
         <Route path='/anonymbox' element={<AnonymBox/>}/>
         <Route path='/profile' element={<Profile />} />
         <Route path="/" element={<Sidebar isAdmin={isAdmin} />}/>
+        <Route path="/scan/:meetingId" element={<Scan/>} />
 
 
         <Route path='/comments' element={<ViewBoxSection/>}/>

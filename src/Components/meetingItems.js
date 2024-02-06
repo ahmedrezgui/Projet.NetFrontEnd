@@ -1,5 +1,33 @@
-function MeetingItem({meetingData}){
+import axios from 'axios';
+function MeetingItem({meetingData, token}){
+    console.log("token in meeting item", token)
+    const handleConfirmPresence = async () => {
+      try {
+        console.log(token);
+        // Send PATCH request to the API endpoint
+        await axios.patch(
+          "https://localhost:7181/api/historique-presences/confirm-presence",
+          
+          {
+            meetingId: meetingData.id, // Assuming meetingData contains the ID of the meeting
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token
+            }
+          },
+        );
+
+        // Handle success
+        console.log("Presence confirmed successfully");
+      } catch (error) {
+        // Handle error
+        console.error("Error confirming presence:", error);
+      }
+    };
+    console.log(meetingData?.date)
     const dateObject = new Date(meetingData?.date);
+
     const formattedDate = new Intl.DateTimeFormat("en-us",{
         day: "numeric",
         month: "long",
@@ -31,7 +59,7 @@ function MeetingItem({meetingData}){
                 </p>
             </div>
             <div className="confirmation-buttons flex flex-col justify-center gap-[20px] w-[150px] h-full text-white font-black">
-                <button className="confirm-button bg-green-600 py-[15px]">
+                <button className="confirm-button bg-green-600 py-[15px]"onClick={handleConfirmPresence}>
                     Confirm
                 </button>
                 <button className="deny-button bg-rose-800 py-[15px]">

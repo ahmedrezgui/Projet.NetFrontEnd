@@ -3,7 +3,6 @@ import MeetingItem from "./meetingItems";
 import axios from 'axios';
 const upcomingMeetingUrl = 'https://localhost:7181/api/meetings/upcoming';
 const token = localStorage.getItem('JwtToken');
-console.log(token)
 
 
 function Meeting(){
@@ -11,7 +10,6 @@ function Meeting(){
    
     useEffect(()=>{
         axios.get(upcomingMeetingUrl,{
-            withCredentials: true,
             headers: {
                 'Authorization': "Bearer "+ token,
                 'Access-Control-Allow-Origin': '*', 
@@ -21,18 +19,14 @@ function Meeting(){
             
         })
         .then(response => {
-            console.log("response: " , response.data)
             setMeetingData(response.data)
             console.log('Upcoming Meeting Data:', meetingData);
         })
         .catch((error)=> {
             console.error('Error fetching upcoming meeting data:', error.message);
         });
-        // use fetch to get data then with response.json() to get the data
-        /// specify the token JwtToken in header
-        // get token from c
 
-    },[meetingData])
+    },[])
 
     const currentDate = new Intl.DateTimeFormat("en-us",{
         weekday: "long",
@@ -61,7 +55,7 @@ function Meeting(){
                 {
                     meetingData.map((meeting)=>{
                         return(
-                            <MeetingItem meetingData={meeting}/>
+                            <MeetingItem meetingData={meeting} token={token} key={meeting.id}/>
                         )
                     })
                 }
