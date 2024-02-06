@@ -49,12 +49,15 @@ const AddTasks = (props) => {
     // Add more validation as needed
 
     if (Object.keys(errors).length === 0) {
-      const users = selectedMembers.map((value, index) => (value));
+      const users = selectedMembers.map((value, index) => ({ id: value }));
 
       let token=localStorage.getItem('JwtToken');
+      let id= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+
       const taskData = {
+        id,
         name,
-        deadLine: `${day}T23:59:59:00Z`,
+        deadLine: `${day}T23:59:59Z`,
         description,
         users
             };
