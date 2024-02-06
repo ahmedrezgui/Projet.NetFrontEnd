@@ -7,19 +7,8 @@ import {  Form } from 'react-bootstrap';
 const MembersSelect = (props) => {  
   
     const [selectedMembers, setSelectedMembers] = useState([]);
- 
 
   
-  // Transform members array into options for react-select
-  const selectOptions = props.members.map((member) => ({
-    value: member.id,
-    label: (
-      <div>
-        {member.name}
-      </div>
-    ),
-  }));
-
    return(
 
 
@@ -32,7 +21,7 @@ const MembersSelect = (props) => {
     <Form.Check
       key={member.id}
       type="checkbox"
-      label={member.name}
+      label={member.lastName+" "+member.firstName}
       checked={props.selectedMembers.includes(member.id)}
       onChange={() => props.handleSelectChange(member.id)}
     />

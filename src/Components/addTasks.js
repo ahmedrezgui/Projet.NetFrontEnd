@@ -26,7 +26,7 @@ const AddTasks = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Perform validation
@@ -49,6 +49,36 @@ const AddTasks = (props) => {
     // Add more validation as needed
 
     if (Object.keys(errors).length === 0) {
+      const users = selectedMembers.map((value, index) => (value));
+
+      let token=localStorage.getItem('JwtToken');
+      const taskData = {
+        name,
+        deadLine: `${day}T23:59:59:00Z`,
+        description,
+        users
+            };
+      console.log(taskData);
+    
+      try {
+        const response = await fetch('https://localhost:7181/Task/Create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + token,
+          },
+          body: JSON.stringify(taskData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        console.log('Event data posted successfully!');
+        // Handle any additional actions upon successful submission
+      } catch (error) {
+        console.error('Error posting event data:', error);
+      }
       setSelectedMembers([]);
       setDescripion('');
       setName('');

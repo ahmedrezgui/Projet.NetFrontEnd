@@ -46,6 +46,7 @@ const Login = ({setAuthenticated, redirect}) => {
           const response = await axios.post('https://localhost:7181/Auth/login', {
               Email: email,
               Password: password,
+              RememberMe: rememberMe,
           }, { withCredentials: true });
 
           if (response.status === 200) {
