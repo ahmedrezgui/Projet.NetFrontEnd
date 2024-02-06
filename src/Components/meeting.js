@@ -19,7 +19,8 @@ function Meeting(){
             
         })
         .then(response => {
-            setMeetingData(response.data)
+            setMeetingData(response.data.sort((a, b) => new Date(a.date) - new Date(b.date)));
+           
             console.log('Upcoming Meeting Data:', meetingData);
         })
         .catch((error)=> {
