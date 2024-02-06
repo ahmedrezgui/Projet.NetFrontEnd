@@ -33,13 +33,15 @@ const AddEvents = (props) => {
   function formatToDotNetDateTime(day, hourIn) {
     // Assuming day is in the format 'YYYY-MM-DD' and hourIn is in the format 'HH:mm'
     const formattedDateTime = `${day}T${hourIn}:00`;
-  
+  console.log(formattedDateTime);
     // Create a JavaScript Date object from the formatted string
     const jsDate = new Date(formattedDateTime);
-  
+    console.log(jsDate);
+
     // Get the ISO string representation, which is compatible with .NET DateTime
     const dotNetDateTime = jsDate.toISOString();
-  
+    console.log(dotNetDateTime);
+
     return dotNetDateTime;
   }
   
@@ -86,7 +88,7 @@ const AddEvents = (props) => {
       const eventData = {
         id,
         name,
-        day: formatToDotNetDateTime(day, hourIn),
+        date: `${day}T${hourIn}:00Z`,
         location,
         description
             };
