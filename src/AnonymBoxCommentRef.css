@@ -1,0 +1,18 @@
+.anas-refcontainer
+{
+    width: 20vw;
+    text-align: center;
+    background-color: #E5E5E5;
+    color:black ;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 42px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+.anas-active
+{
+    background-color: #F7C159;
+}

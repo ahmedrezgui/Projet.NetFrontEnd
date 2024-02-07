@@ -1,0 +1,9 @@
+.anas-taskcardcontainer
+{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5vw;
+    flex-wrap: wrap;
+    padding-top: 1vh;
+    padding-left: 1vw;
+}

@@ -1,0 +1,39 @@
+.anas-commentform
+{
+    display: flex ;
+    flex-direction: column;
+    gap: 2vh;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    
+}
+.anas-commentforminput
+{
+    border: 0px;
+    height: 20vh;
+    width: 44vw;
+    outline: none;
+    border-radius: 15px;
+    resize: none;
+    padding: 5px 5px;
+    font-family: Inter;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 42px;
+    letter-spacing: 0em;
+
+}
+.anas-commentformbutton
+{
+    color: #483C3C;
+    font-family: Inter;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding: 0.5vh 5vw;
+    width: fit-content;
+}

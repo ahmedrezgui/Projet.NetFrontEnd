@@ -1,0 +1,59 @@
+.anas-gris
+{
+    background-color: #F3F2F2;
+}
+.anas-rouge
+{
+    color: #C73A3A;
+}
+.anas-marron
+{
+    background-color: #8F7E5B;
+}
+.anas-taskcard
+{
+    border-radius: 19px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    padding: 1vw;
+    align-items: end;
+}
+.anas-button
+{   width: max-content;
+    height: min-content;
+    border-radius: 19px;
+    padding: 1.5vw;
+    text-align: center;
+}
+.anas-titre
+{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    max-width:15vw ;
+}
+.anas-container
+{
+    display: flex ;
+    flex-direction: column;
+    gap: 1vh;
+}
+.anas-deadline
+{
+    font-weight: 500;
+    font-size: 19;
+    line-height: 30px;
+}
+.anas-link
+{
+    color: white;
+    text-decoration: none;
+}
+.anas-iconcontainer
+{
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+}

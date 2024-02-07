@@ -1,3 +1,281 @@
+.form-control{
+  height: 4vh !important;
+}
+.Big-container
+{
+    border-radius: 3vh !important;
+
+
+
+  display: flex;
+  gap: 0;
+  flex-direction: column;
+
+}
+.event-form {
+  font-family: "Inter", sans-serif ;
+    display: flex;
+    flex-wrap: nowrap ;
+  background-color: #EBEBEB;
+ }
+
+ .formtype{
+  margin-left:2px ;
+  margin-right:2px ;
+ }
+ .formtype:hover {
+    cursor: pointer;
+ }
+
+  /* Active/Clicked styles */
+   .formtype :active {
+    cursor: pointer; 
+  }
+
+ 
+  .conteneur{
+    display: flex;
+    flex-wrap: nowrap ;
+    background-color: #EBEBEB;
+    height: 10%;
+
+  }
+
+  .right-panel-1 {
+    width: 60%;
+    padding: 5%;   
+    display: grid;
+    grid-template-columns: auto auto auto;  
+    padding-bottom: 0% ;
+    text-align: center;
+    
+    
+    /* Add your styles here */
+  }
+
+  .left-panel-1 {
+    width: 35%;
+    font-size: 135%;
+    font-weight:500 ;
+    padding: 3%;   
+    padding-bottom:0;
+    margin-bottom: 2%;
+    margin-left: 3%;
+    border-bottom: 2px groove black;
+
+
+    
+    /* Add your styles here */
+  }
+  
+  .sub-container{
+    display: flex;
+    flex-wrap: nowrap ;
+  }
+  .left-panel-sub {
+    background-color: white;
+    width: 50%;
+    
+    padding: 5%;
+    
+    /* Add your styles here */
+  }
+  .left-panel-2 {
+    background-color: white;
+    width: 40%;
+    margin: 2%;
+    margin-top:0;
+
+    padding-bottom:0;
+    padding-left: 0;
+    border : 1px solid #ced4da;
+    border-radius: 15px;
+    height: 65vh !important;
+  
+    /* Add your styles here */
+  }
+  
+  .right-panel-sub {
+    background-color: white;
+    width: 50%;
+    padding: 5%;
+   
+    /* Add your styles here */
+  }
+
+  .right-panel-2 {
+    text-align: center;
+    background-color: white;
+    width: 60%;
+    margin: 2%;
+    padding: 2%;
+    border : 1px solid #ced4da;
+    border-radius: 15px;
+    margin-top:0;
+    height: 65vh !important;
+
+
+    /* Add your styles here */
+  }
+  
+  
+ 
+  .event-form label {
+      font-size: 70%;
+
+    display: block;
+    /* Add your styles here */
+  }
+  .input{
+    background-color: #E5E5E5 !important;
+    text-align: center;
+
+   
+  }
+.form-label{
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+/* styles.css */
+
+.full-width-select {
+  height: 100% ;
+  background-color: white  !important;
+  padding: 5%;
+  padding-left: 0;
+  margin-left: 0;
+  direction: rtl;
+  overflow: scroll ;
+  border-width: 0 !important;
+
+}
+.full-width-div {
+  height: 100% ;
+  background-color: white  !important;
+  padding: 5%;
+  padding-left: 0;
+  margin-left: 0;
+  border-width: 0 !important;
+
+}
+
+
+.centered-button-container {
+ height: 5vh !important;
+  margin-top: 2%; /* Optional: Add margin for spacing */
+}
+
+.buttonform{
+  --bs-btn-bg:#4D4D4D !important;
+  border-radius: 19px !important;
+    height: 5vh !important;
+    margin-top: 1vh;
+}
+
+.hour-label{
+  font-size: small;
+  
+}
+  
+.day-container{
+  margin-top: 5%;
+}
+.form-check{
+  font-size: 20px;
+  text-align: center;
+  padding: 4%;
+  direction:ltr !important;
+
+}
+
+
+.error{
+  font-size: 10px;
+  text-align: center;
+  color: red;
+
+
+}
+
+
+
+.full-width-select::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+  height: 5px;
+
+}
+
+.full-width-select::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 6px; /* Set the radius of the scrollbar thumb */
+}
+
+.full-width-select::-webkit-scrollbar-track {
+  background-color: #eee; /* Set the color of the scrollbar track */
+}
+.icon{
+ background-color: #4D4D4D !important;
+ width: 100%;
+}
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-top: 5vh;
+    margin-left: 1vw;
+}
+
+.input-wrapper input[type="text"] {
+    padding: 8px 8px 8px 30px; /* Adjust padding to accommodate icon */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 15vw;
+    height: 5vh;
+    border-radius: 3vh !important;
+    background-repeat: no-repeat;
+    background-position: left 8px center; /* Adjust positioning */
+}
+
+.input-wrapper .icon-placeholder {
+    position: absolute;
+    left: 10px; /* Adjust positioning */
+    top: 50%;
+    transform: translateY(-50%);
+}
+.fonctionalités{
+    width: 100vh;
+    display: flex;
+    gap: 4vh;
+    margin-left: 8vh;
+    margin-bottom: 1vh;
+
+
+}
+.fonction{
+    width: 28vh;
+    height: 6vh;
+    background-color: #EBEBEB;
+    text-align: center;
+    font-family: "Inter", sans-serif ;
+    font-weight: 500;
+    padding-top: 1vh;
+}
+.fonction:hover{
+    cursor: pointer;
+
+}
+
+
+
+
 .Big-container
 {
   display: flex;
