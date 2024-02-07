@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import ContestModal from './ContestModal';
 
 function Blames(data) {
-    // const blames = [
-    //     { date: "February 14, 2024", time: " 9:00 AM", title: "  Attended the Meeting 1", description: "Descriptino lorem espm lmesdf dese ldods fjk f" },
-    //     { date: "February 14, 2024", time: " 9:00 AM", title: "  Attended the Meeting 1", description: "Descriptino lorem espm lmesdf dese ldods fjk fjshdc jhsd gjh gsdjgc hjhg" },
-    // ]
-    console.log(data);
+  
     const [visible, setVisible] = useState(false);
     const onClose = () => { setVisible(false); }
     return (

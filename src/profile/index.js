@@ -10,21 +10,53 @@ function Profile() {
     const [blamesBtn, setBlamesBtn] = useState(false);
     const [medBtn, setMedBtn] = useState(false);
 
-    const [user, setUser] = useState();
-    const userId = "3272f258-92e8-473b-ae8e-6e4624964412"
-    const getUserData = async () => {
+    const [history, setHistory] = useState([]);
+    const [blames, setBlames] = useState();
+    const [user, setUser] = useState({});
+    const [role, setRole] = useState();
+
+    let token = localStorage.getItem('JwtToken');
+
+    const getUserHistory = async () => {
         try {
-            const response = await fetch(`https://localhost:7181/api/Profile/${userId}`, {
+            // Fetch data from the API
+            const response = await fetch('https://localhost:7181/profile', {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                }
+            });
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Parse the JSON data
+            const data = await response.json();
+            console.log(data);
+            // Update the state with the fetched events
+
+            setHistory(data.histoData);
+            setUser(data.userData);
+            console.log(user);
+            if (user.isAdmin) { setRole("leader") }
+            else { setRole("Member") }
+
+        } catch (error) {
+            console.error('Error fetching historique:', error);
+        }
+    };
+    const getUserBlames = async () => {
+        try {
+            const response = await fetch(`https://localhost:7181/blames/user`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Cookie': `access-token=${cookies["access-token"]}`,
+                    'Authorization': 'Bearer ' + token,
                 },
-                // credentials: "include",
+
             });
             const data = await response.json();
-            setUser(data);
-            console.log(data);
+            setBlames(data);
         } catch (error) {
             console.log("Error: " + error);
         }
@@ -47,7 +79,8 @@ function Profile() {
         setMedBtn(true);
     }
     useEffect(() => {
-        getUserData();
+        getUserHistory();
+        getUserBlames();
     }, []);
 
     return (
@@ -65,8 +98,8 @@ function Profile() {
                             </svg>
                         </div>
                         <div className="flex flex-col justify-start col-span-2 pt-4 ml-2">
-                            <div className="text-2xl font-bold">Cactus Cactus</div>
-                            <div className="text-lg font-semibold">Enactus INSAT Team Member</div>
+                            <div className="text-2xl font-bold">{user.firstName} {user.lastName}</div>
+                            <div className="text-lg font-semibold">Enactus INSAT Team {role} </div>
                             <div>Departement Marketing</div>
                         </div>
                     </div>
@@ -80,10 +113,10 @@ function Profile() {
                         <div style={{ background: "#EBEBEB" }} className="place-self-center w-10/12 h-5/6  bg-white rounded-xl py-4 px-4 overflow-y-scroll scrollbar scrollbar-w-1 scrollbar-thumb-rounded-md  scrollbar-thumb-yellow-500 ">
                             <ul>
                                 {
-                                    histBtn ? <Historique /> : null
+                                    histBtn ? <Historique data={history} /> : null
                                 }
                                 {
-                                    blamesBtn ? <Blames data={user} /> : null
+                                    blamesBtn ? <Blames data={blames} /> : null
                                 }
                                 {
                                     medBtn ? <Medaille /> : null
