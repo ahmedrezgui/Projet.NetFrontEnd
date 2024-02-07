@@ -7,12 +7,14 @@ import {  Form } from 'react-bootstrap';
 const MembersSelect = (props) => {  
   
     const [selectedMembers, setSelectedMembers] = useState([]);
+    const selectStyle=(props.selectStyle)?{height:props.selectStyle}:{};
+
 
   
    return(
 
 
-      <div className='left-panel-2'>
+      <div className='left-panel-2' style={selectStyle} >
         {/* Multiple Select */}
         <Form.Group controlId="multipleSelect" className="full-width-select">
         <Form.Control as="div" className="full-width-div">

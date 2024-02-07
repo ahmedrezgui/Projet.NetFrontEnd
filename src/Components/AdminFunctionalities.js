@@ -1,6 +1,7 @@
 import React ,{useState , useEffect} from 'react';
 import '../Style/addEvents.css';
 import Sidebar from '../component/sidebar'
+import AddRemoveMember from "./AddRemoveMember";
 
 import AddWork from "./AddWork";
 
@@ -13,7 +14,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
                 <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
                 <Sidebar ></Sidebar>
                 </div >
-                <div style={{backgroundColor:"white",height:"130vh",marginTop:"6vh",borderRadius:"4vh"}}>
+                <div style={{backgroundColor:"white",height: functionality==="Add/Remove Member"?"140vh": "130vh",marginTop:"6vh",borderRadius:"4vh"}}>
                     <div className="row-span-1 grid grid-cols-4 w-full px-10 pt-6 pb-4"  >
                         <div className="col-span-1 flex justify-center pl-10 mb-4">
                             <svg width="150" height="140" viewBox="0 0 161 161" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,6 +46,8 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
 
                     </div>
                     {functionality==="Add Task" ? <AddWork/> : <></>}
+                    {functionality==="Add/Remove Member" ? <AddRemoveMember/> : <></>}
+
                 </div>
 
             </div>
