@@ -2,16 +2,12 @@ import React from "react";
 import { useState } from "react";
 import BlameForm from "./BlameForm";
 import MedailleForm from "./MedailleForm";
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import '../Style/addEvents.css';
 import SelectMember from "./SelectMember";
 
 const AddBlame = () => {
     const [activeForm, setActiveForm] = useState('medaille');
-    
-    
-
-      
      
     return(
 

@@ -10,7 +10,7 @@ const MedailleForm = () =>{
     const [description, setDescription] = useState('');
 
     // Select 
-    const [selectedUserId, setSelectedUserId] = useState(null);
+    const [selectedMembers, setSelectedMembers] = useState([]);
 
     //handler for the submission
     const handleMedailleSubmit = async (event) => {
@@ -18,7 +18,7 @@ const MedailleForm = () =>{
   
       const medaille = {
         //select
-          UserId: selectedUserId,
+          member: selectedMembers,
         //
           Name:name,
           Description:description,
@@ -32,14 +32,12 @@ const MedailleForm = () =>{
           'Content-Type': 'application/json'
         }
       })
-      const json = await response.json()
   
       if (response.ok) {
-          const result = await response.json();
           alert('Medal added successfully');
           setName('');
           setDescription('');
-          setSelectedUserId(null);
+          setSelectedMembers([]);
 
         } else {
           console.error('Failed to add medal:', response);

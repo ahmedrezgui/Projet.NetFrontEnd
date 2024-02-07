@@ -11,7 +11,7 @@ const BlameForm = () => {
     const [isBlameChecked, setIsBlameChecked] = useState(true);
     const [isAvertissementChecked, setIsAvertissementChecked] = useState(false);
     // Select 
-    const [selectedUserId, setSelectedUserId] = useState(null);
+    const [selectedMembers, setSelectedMembers] = useState([]);
   
     //checkboxes
     const handleBlameChange = () => {
@@ -31,7 +31,7 @@ const BlameForm = () => {
   
       const blame = {
         //select
-          UserId: selectedUserId,
+          member: selectedMembers,
         //
           Object:reason,
           Name: isBlameChecked ? "Blame" : "Advertisement" ,
@@ -45,13 +45,11 @@ const BlameForm = () => {
           'Content-Type': 'application/json'
         }
       })
-      const json = await response.json()
   
       if (response.ok) {
-          const result = await response.json();
           alert('Blame added successfully');
           setReason('');
-          setSelectedUserId(null);
+          setSelectedMembers([]);
 
         } else {
           console.error('Failed to add blame:', response);
