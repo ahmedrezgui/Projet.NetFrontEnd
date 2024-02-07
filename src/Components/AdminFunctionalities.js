@@ -1,6 +1,7 @@
 import React ,{useState , useEffect} from 'react';
 import '../Style/addEvents.css';
 import Sidebar from '../component/sidebar'
+import AddRemoveMember from "./AddRemoveMember";
 
 import AddWork from "./AddWork";
 
@@ -45,6 +46,8 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
 
                     </div>
                     {functionality==="Add Task" ? <AddWork/> : <></>}
+                    {functionality==="Add/Remove Member" ? <AddRemoveMember/> : <></>}
+
                 </div>
 
             </div>
