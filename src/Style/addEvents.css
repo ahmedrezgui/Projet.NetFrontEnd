@@ -29,10 +29,10 @@
 
   /* Active/Clicked styles */
    .formtype :active {
-    cursor: pointer; 
+    cursor: pointer;
   }
 
- 
+
   .conteneur{
     display: flex;
     flex-wrap: nowrap ;
@@ -43,13 +43,13 @@
 
   .right-panel-1 {
     width: 60%;
-    padding: 5%;   
+    padding: 5%;
     display: grid;
-    grid-template-columns: auto auto auto;  
+    grid-template-columns: auto auto auto;
     padding-bottom: 0% ;
     text-align: center;
-    
-    
+
+
     /* Add your styles here */
   }
 
@@ -57,17 +57,17 @@
     width: 35%;
     font-size: 135%;
     font-weight:500 ;
-    padding: 3%;   
+    padding: 3%;
     padding-bottom:0;
     margin-bottom: 2%;
     margin-left: 3%;
     border-bottom: 2px groove black;
 
 
-    
+
     /* Add your styles here */
   }
-  
+
   .sub-container{
     display: flex;
     flex-wrap: nowrap ;
@@ -75,9 +75,9 @@
   .left-panel-sub {
     background-color: white;
     width: 50%;
-    
+
     padding: 5%;
-    
+
     /* Add your styles here */
   }
   .left-panel-2 {
@@ -91,15 +91,15 @@
     border : 1px solid #ced4da;
     border-radius: 15px;
     height: 65vh ;
-  
+
     /* Add your styles here */
   }
-  
+
   .right-panel-sub {
     background-color: white;
     width: 50%;
     padding: 5%;
-   
+
     /* Add your styles here */
   }
 
@@ -117,9 +117,9 @@
 
     /* Add your styles here */
   }
-  
-  
- 
+
+
+
   .event-form label {
       font-size: 70%;
 
@@ -130,7 +130,7 @@
     background-color: #E5E5E5 !important;
     text-align: center;
 
-   
+
   }
 .form-label{
   margin-bottom: 5%;
@@ -174,9 +174,9 @@
 
 .hour-label{
   font-size: small;
-  
+
 }
-  
+
 .day-container{
   margin-top: 5%;
 }
@@ -273,154 +273,18 @@
 
 }
 
-
-
-
-.Big-container
-{
-  display: flex;
-  flex-direction: column;
-
-}
-.event-form {
-  font-family: "Inter", sans-serif ;
-    display: flex;
-    flex-wrap: nowrap ;
-  background-color: #EBEBEB;
- }
-
- .formtype{
-  background-color: #CCCAC7;
-  margin-left: 33%;
-  margin-right: -24%;
-  cursor: pointer;
- }
- .formtype-active {
-  background-color: #F7C159;
-}
-  .container{
-    display: flex;
-    flex-wrap: nowrap ;
-    background-color: #EBEBEB;
-    height: 10%;
-  }
-
-  .right-panel-1 {
-    width: 50%;
-    padding: 5%;   
-    display: grid;
-    grid-template-columns: auto auto auto;  
-    padding-bottom: 0% ;
-    text-align: center;
-    
-    
-    /* Add your styles here */
-  }
-
-  .left-panel-1 {
-    width: 50%;
-    
-    padding-bottom: 0;
-    
-    /* Add your styles here */
-  }
-  
-  .sub-container{
-    display: flex;
-    flex-wrap: nowrap ;
-  }
-  .left-panel-sub {
-    background-color: white;
-    width: 50%;
-    
-    padding: 5%;
-    
-    /* Add your styles here */
-  }
-  .left-panel-2 {
-    background-color: white;
-    width: 50%;
-    margin: 2%;
-    margin-top:0;
-    padding: 5%;
-    border : 1px solid #ced4da;
-    border-radius: 15px;
-    /* Add your styles here */
-  }
-  
-  .right-panel-sub {
-    background-color: white;
-    width: 50%;
-    padding: 5%;
-   
-    /* Add your styles here */
-  }
-
-  .right-panel-2 {
-    text-align: center;
-    background-color: white;
-    width: 50%;
-    margin: 2%;
-    padding: 5%;
-    border : 1px solid #ced4da;
-    border-radius: 15px;
-    margin-top:0;
-
-    /* Add your styles here */
-  }
-  
-  
- 
-  .event-form label {
-    display: block;
-    /* Add your styles here */
-  }
-  .input{
-    background-color: #E5E5E5 !important;
-  }
-
-/* styles.css */
-
-.full-width-select {
-  height: 100% ;
-  background-color: #E5E5E5 !important;
-}
-
-
-.centered-button-container {
-  
-  margin-top: 10%; /* Optional: Add margin for spacing */
-}
-
-button{
-  --bs-btn-bg:#4D4D4D !important;
-  border-radius: 19px !important;
-}
-.button:hover {
-  background-color: #F7C159 !important; /* Or use the specific yellow shade you want */
-  border-color: #F7C159 !important;
-
-}
-.form-check-input {
-  background-color: #EBEBEB !important;
-  border-color: #EBEBEB !important;
-}
 .form-check-input:checked {
-  background-color: #F7C159 !important;
-  border-color: #F7C159 !important;
+    background-color: #F7C159 !important;
+    border-color: #F7C159 !important;
 }
 
-.hour-label{
-  font-size: small;
-  
-}
-  
-.day-container{
-  margin-top: 5%;
-}
-.option{
-  font-size: 20px;
-  text-align: center;
-  padding: 4%;
+.button{ --bs-btn-bg:#4D4D4D !important;
+    border-radius: 19px !important;
+    height: 5vh !important;
+    margin-top: 1vh;
+    --bs-btn-border-color:none;
 
 }
+
+
+
