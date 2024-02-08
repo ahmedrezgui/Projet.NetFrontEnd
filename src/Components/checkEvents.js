@@ -38,8 +38,8 @@ const CheckEvents = () => {
   
 
  const handleCLick =(id)=>{
-   setPanel(id);
-  }
+  setPanel(panel === id ? null : id);
+}
 
   const parseDateTime = (dateTimeString) => {
     // Parse the date string
@@ -68,10 +68,10 @@ const CheckEvents = () => {
            } </div> 
            <div className='ProprietiesItem'>
             <div className='eventName'> {event.name} </div>
-            <div className='eventDesc'> {event.description} </div>
+            <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
           </div>
           <div className='buttonContainer'>
-          <button onClick={() => handleCLick(event.id)}>More Info</button>
+          <button onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
 
             </div>
 
