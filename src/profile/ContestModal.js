@@ -1,13 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ContestModal({ visible, blame, onClose }) {
+
     const [inputValue, setInputValue] = useState(blame.contention);
+    useEffect(() => {
+        // Update inputValue when blame changes
+        setInputValue(blame.contention);
+    }, [blame]);
+
     const handleInput = (e) => {
         setInputValue(e.target.value);
     }
     const handleOnClose = (e) => {
-        if (e.target.id === "container") onClose();
+        if (e.target.id === "container") { setInputValue(blame.contention); onClose(); };
     }
 
     const updateContest = async () => {

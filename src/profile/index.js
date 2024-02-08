@@ -16,7 +16,7 @@ function Profile() {
     const [role, setRole] = useState();
 
     let token = localStorage.getItem('JwtToken');
-
+    console.log(token);
     const getUserHistory = async () => {
         try {
             // Fetch data from the API
@@ -37,7 +37,6 @@ function Profile() {
 
             setHistory(data.histoData);
             setUser(data.userData);
-            console.log(user);
             if (user.isAdmin) { setRole("leader") }
             else { setRole("Member") }
 
@@ -56,6 +55,7 @@ function Profile() {
 
             });
             const data = await response.json();
+            console.log(data);
             setBlames(data);
         } catch (error) {
             console.log("Error: " + error);
