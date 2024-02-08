@@ -29,6 +29,8 @@ const MembersSelect = (props) => {
   ))}
   </Form.Control>
 </Form.Group>
+<div className='error' >{(props.selectedMembers.length === 0) && <div className="error">{props.formErrors.selectedMembers}</div>}
+                    </div> 
         
 
         </div>

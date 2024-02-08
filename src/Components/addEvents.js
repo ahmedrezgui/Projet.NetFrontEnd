@@ -138,6 +138,8 @@ const AddEvents = (props) => {
         <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
+
                     />
         <div className='right-panel-2'>
            {/* Text Input */}

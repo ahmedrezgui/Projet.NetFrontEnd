@@ -43,6 +43,11 @@ const AddTasks = (props) => {
     if (!description.trim()) {
         errors.description = 'Details are required';
       }
+      if(selectedMembers.length===0)
+      {
+        errors.selectedMembers="At least one member is required";
+      }
+  
     
 
 
@@ -98,7 +103,9 @@ const AddTasks = (props) => {
      <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
                     />
+      
         <div className='right-panel-2'>
            {/* Text Input */}
         <Form.Group controlId="name">
