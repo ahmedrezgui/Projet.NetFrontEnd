@@ -198,6 +198,7 @@ const AddTasks = (props) => {
                                selectedMembers={selectedMembers}
                                handleSelectChange={handleSelectChange}
                                selectStyle={"70vh"}
+                               formErrors={formErrors}
                 />
 
 
