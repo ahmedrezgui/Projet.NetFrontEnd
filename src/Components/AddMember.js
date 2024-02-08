@@ -199,6 +199,7 @@ const AddTasks = (props) => {
                                handleSelectChange={handleSelectChange}
                                formErrors={formErrors}
                                selectStyle={"70vh"}
+                               formErrors={formErrors}
                 />
 
 
