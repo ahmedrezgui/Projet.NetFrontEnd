@@ -57,6 +57,7 @@ const CheckEvents = () => {
     );
   };
   return (
+    <div style={{backgroundColor:"white",height:"140vh",margin:"6vh" ,borderRadius:"4vh"}}>
     <div className='full-container'>
       <div className='title'> Upcoming events</div>
       <div className='list-container'>
@@ -78,6 +79,7 @@ const CheckEvents = () => {
           </div>
         
         ))}
+      </div>
       </div>
       </div>
   );

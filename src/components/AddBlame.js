@@ -4,11 +4,14 @@ import BlameForm from "./BlameForm";
 import MedailleForm from "./MedailleForm";
 import { Container } from 'react-bootstrap';
 import '../Style/addEvents.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SelectMember from "./SelectMember";
 
 const AddBlame = () => {
     const [activeForm, setActiveForm] = useState('medaille');
-     
+    const [searchValue, setSearchValue] = useState('');
+
     const [selectedMembers, setSelectedMembers] = useState("");
     const [members, setMembers] = useState([]);
     const [allMembers, setAllMembers] = useState([]);
@@ -199,17 +202,52 @@ const AddBlame = () => {
       }
     };
 
+    const handleInputChange = (e) => {
+      let inputValue = e.target.value;
+      setSearchValue(inputValue);
+      if (!inputValue) {
+          setMembers(allMembers);
+          return;
+      }
+      inputValue=inputValue.toLowerCase();
+      let mmbr=[];
 
+      allMembers.map((member) => {
+         let memberFirstName=member.firstName.toLowerCase();
+         let memberLastName=member.lastName.toLowerCase();
+         let memberFullName=memberFirstName+" "+memberLastName;
+         let memberReverseFullName=memberLastName+" "+memberFirstName;
+          if(memberFirstName.startsWith(inputValue) || memberLastName.startsWith(inputValue) || memberReverseFullName.startsWith(inputValue) || memberFullName.startsWith(inputValue)){
+              mmbr.push(member);
+          }
+      })
+     setMembers(mmbr);
+  };
 
 
     return(
 
 
+      <div style={{width: "90%",height:"90vh",borderRadius:"3vh"}}>
+
         <Container className='Big-container'  style = {{
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            backgroundColor: "rgb(235, 235, 235)",
+            marginLeft: "5vh",
+              borderRadius: "3vh",
+              width:'100vh'
         }}>
+                <form className="search-form" >
+                <div className="input-wrapper">
+                  <input type="text" placeholder="Search..." value={searchValue} onChange={handleInputChange}/>
+                  <div className="icon-placeholder">
+                    <FontAwesomeIcon icon={faSearch}/>
+                  </div>
+                </div>
+              </form>
             <div className='container' style={containerStyles}>
+
                 <div className='left-panel-1' style={leftPanel1Styles}>
                     select Member
                 </div>
@@ -243,6 +281,7 @@ const AddBlame = () => {
                     handleSelectChange={handleSelectChange}/>}
             </div>
       </Container>
+    </div> 
         // <div>
         //     <div>
         //         <button  onClick={MedailleButton}>Medaille</button>
