@@ -15,9 +15,8 @@ const AddEvents = (props) => {
   const [location,setLocation]= useState('');
   const [day, setDay] = useState('jj/mm/aaaa');
   const [hourIn, setHourIn] = useState('--:--');
-  const [hourOut, setHourOut] = useState('--:--');
   const [formErrors, setFormErrors] = useState({});
-
+  
   const handleSelectChange = (memberId) => {
     // Check if the memberId is already in selectedMembers
     if (selectedMembers.includes(memberId)) {
@@ -31,7 +30,22 @@ const AddEvents = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  function formatToDotNetDateTime(day, hourIn) {
+    // Assuming day is in the format 'YYYY-MM-DD' and hourIn is in the format 'HH:mm'
+    const formattedDateTime = `${day}T${hourIn}:00`;
+  console.log(formattedDateTime);
+    // Create a JavaScript Date object from the formatted string
+    const jsDate = new Date(formattedDateTime);
+    console.log(jsDate);
+
+    // Get the ISO string representation, which is compatible with .NET DateTime
+    const dotNetDateTime = jsDate.toISOString();
+    console.log(dotNetDateTime);
+
+    return dotNetDateTime;
+  }
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Perform validation
@@ -58,21 +72,6 @@ const AddEvents = (props) => {
       errors.hourIn=null;
     }
 
-    if (hourOut==="--:--") {
-      errors.hourOut = 'HourIn is required';
-    }
-    else{
-      errors.hourOut=null;
-    }
-
-    if (hourOut<hourIn)
-    {
-      errors.time='The HourOut should be after the HourIn'
-    }
-    else{
-      errors.time=null;
-    }
-
     if(!location.trim()){
       errors.location="Location is required"
     }
@@ -80,10 +79,41 @@ const AddEvents = (props) => {
       errors.location=null;
     }
 
-
+    console.log("Errors:", errors);
     // Add more validation as needed
 
-    if (Object.keys(errors).length === 0) {
+    if (Object.values(errors).every(value => value === null)){
+      let token=localStorage.getItem('JwtToken');
+      let id= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+      const eventData = {
+        id,
+        name,
+        date: `${day}T${hourIn}:00Z`,
+        location,
+        description
+            };
+      console.log(eventData);
+    
+      try {
+        const response = await fetch('https://localhost:7181/api/Events', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + token,
+          },
+          body: JSON.stringify(eventData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        console.log('Event data posted successfully!');
+        // Handle any additional actions upon successful submission
+      } catch (error) {
+        console.error('Error posting event data:', error);
+      }
+
       // If no errors, submit the form or perform the desired action
       console.log(selectedMembers);
       console.log('Form submitted successfully!');
@@ -93,13 +123,13 @@ const AddEvents = (props) => {
       setLocation('');
       setDay('jj/mm/aaaa');
       setHourIn('--:--');
-      setHourOut('--:--');
       setFormErrors({});
     } else {
       // Update state with validation errors
       setFormErrors(errors);
+      console.log(formErrors);
     }
-    console.log(formErrors);
+    //
 
   };
 
@@ -108,6 +138,8 @@ const AddEvents = (props) => {
         <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
+
                     />
         <div className='right-panel-2'>
            {/* Text Input */}
@@ -120,15 +152,17 @@ const AddEvents = (props) => {
 
         </Form.Group>
 
-        {/* Day Input */}
-        <Form.Group controlId="day" className='day-container'>
-          <Form.Label>Insert Event Day</Form.Label>
+      
+        <div className='sub-container'>
+                  {/* Day Input */}
+
+        <Form.Group controlId="day" className='left-panel-sub'>
+          <Form.Label className='hour-label'>Insert Event Day</Form.Label>
           <Form.Control type="date" placeholder="Select a day" className='input' value={day}
             onChange={(e) => setDay(e.target.value)}/>
               <div className='error' > {formErrors.day && <div className="error">{formErrors.day}</div>}
               </div>
         </Form.Group>
-        <div className='sub-container'>
         {/* Time Input */}
         <Form.Group className='left-panel-sub' controlId="hourIn">
           <Form.Label className='hour-label'>Insert Event Hour in</Form.Label>
@@ -138,13 +172,13 @@ const AddEvents = (props) => {
             </div>
         </Form.Group>
 
-        <Form.Group className='right-panel-sub' controlId="hourOut">
+        {/* <Form.Group className='right-panel-sub' controlId="hourOut">
           <Form.Label className='hour-label'>Insert Event Hour Out</Form.Label>
           <Form.Control type="time" placeholder="Select a time" className='input' value={hourOut}
             onChange={(e) => setHourOut(e.target.value)} />
                   <div className='error' >    {formErrors.hourOut && <div className="error">{formErrors.hourOut}</div>}
                 </div>
-        </Form.Group>
+        </Form.Group> */}
 
         </div>
         <div className='error' >  
@@ -170,7 +204,7 @@ const AddEvents = (props) => {
 
         {/* Submit Button */}
         <div className='centered-button-container '>
-        <Button variant="primary" type="submit" className='buttonform' >
+        <Button variant="primary" type="submit" className='buttonform' style={{height:"4vh"}} >
           Confirm
         </Button>
         </div>

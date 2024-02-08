@@ -31,7 +31,7 @@ const AddMeetings = (props) => {
       setSelectedMembers((prevSelected) => [...prevSelected, memberId]);
     }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Perform validation
@@ -53,7 +53,7 @@ const AddMeetings = (props) => {
       errors.location="Location is required"
     }
 
-    if(!selectedMembers.length===0)
+    if(selectedMembers.length===0)
     {
       errors.selectedMembers="At least one member is required"
     }
@@ -61,6 +61,39 @@ const AddMeetings = (props) => {
     // Add more validation as needed
 
     if (Object.keys(errors).length === 0) {
+      const users = selectedMembers.map((value, index) => ({ id: value }));
+
+      let token=localStorage.getItem('JwtToken');
+      let id= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+      const meetingData = {
+        id,
+        name,
+        date: `${day}T${hour}:00Z`,
+        location,
+        description,
+        users
+            };
+      console.log(meetingData);
+    
+      try {
+        const response = await fetch('https://localhost:7181/api/meetings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + token,
+          },
+          body: JSON.stringify(meetingData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        console.log('Event data posted successfully!');
+        // Handle any additional actions upon successful submission
+      } catch (error) {
+        console.error('Error posting event data:', error);
+      }
       setSelectedMembers([]);
       setDescripion('');
       setName('');
@@ -88,14 +121,17 @@ const AddMeetings = (props) => {
 
    return(
 
+
+
       <Form className='event-form ' onSubmit={handleSubmit}        >
 
 <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
+
                     />       
-                    <div className='error' >{formErrors.selectedMembers && <div className="error">{formErrors.selectedMembers}</div>}
-              </div>
+                
                      <div className='right-panel-2'>
            {/* Text Input */}
         <Form.Group controlId="name">
@@ -149,15 +185,15 @@ const AddMeetings = (props) => {
        
 
         {/* Submit Button */}
-        <div className='centered-button-container '>
-        <Button variant="primary" type="submit" className='buttonform' >
+        <div className='centered-button-container ' style={{height:"5vh"}}>
+        <Button variant="primary" type="submit" className='buttonform'>
           Confirm
         </Button>
         </div>
         </div>
       </Form>
-    
-   
+
+
     );
   }
 export default AddMeetings;

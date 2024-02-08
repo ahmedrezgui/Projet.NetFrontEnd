@@ -26,7 +26,7 @@ const AddTasks = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Perform validation
@@ -43,12 +43,50 @@ const AddTasks = (props) => {
     if (!description.trim()) {
         errors.description = 'Details are required';
       }
+      if(selectedMembers.length===0)
+      {
+        errors.selectedMembers="At least one member is required";
+      }
+  
     
 
 
     // Add more validation as needed
 
     if (Object.keys(errors).length === 0) {
+      const users = selectedMembers.map((value, index) => ({ id: value }));
+
+      let token=localStorage.getItem('JwtToken');
+      let id= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+
+      const taskData = {
+        id,
+        name,
+        deadLine: `${day}T23:59:59Z`,
+        description,
+        users
+            };
+      console.log(taskData);
+    
+      try {
+        const response = await fetch('https://localhost:7181/Task/Create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'bearer ' + token,
+          },
+          body: JSON.stringify(taskData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        console.log('Event data posted successfully!');
+        // Handle any additional actions upon successful submission
+      } catch (error) {
+        console.error('Error posting event data:', error);
+      }
       setSelectedMembers([]);
       setDescripion('');
       setName('');
@@ -65,7 +103,9 @@ const AddTasks = (props) => {
      <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
                     />
+      
         <div className='right-panel-2'>
            {/* Text Input */}
         <Form.Group controlId="name">

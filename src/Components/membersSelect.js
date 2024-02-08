@@ -7,23 +7,14 @@ import {  Form } from 'react-bootstrap';
 const MembersSelect = (props) => {  
   
     const [selectedMembers, setSelectedMembers] = useState([]);
- 
+    const selectStyle=(props.selectStyle)?{height:props.selectStyle}:{};
+
 
   
-  // Transform members array into options for react-select
-  const selectOptions = props.members.map((member) => ({
-    value: member.id,
-    label: (
-      <div>
-        {member.name}
-      </div>
-    ),
-  }));
-
    return(
 
 
-      <div className='left-panel-2'>
+      <div className='left-panel-2' style={selectStyle} >
         {/* Multiple Select */}
         <Form.Group controlId="multipleSelect" className="full-width-select">
         <Form.Control as="div" className="full-width-div">
@@ -32,7 +23,7 @@ const MembersSelect = (props) => {
     <Form.Check
       key={member.id}
       type="checkbox"
-      label={member.name}
+      label={member.lastName+" "+member.firstName}
       checked={props.selectedMembers.includes(member.id)}
       onChange={() => props.handleSelectChange(member.id)}
     />
@@ -40,6 +31,8 @@ const MembersSelect = (props) => {
   ))}
   </Form.Control>
 </Form.Group>
+<div className='error' >{(props.selectedMembers.length === 0) && <div className="error">{props.formErrors.selectedMembers}</div>}
+                    </div> 
         
 
         </div>

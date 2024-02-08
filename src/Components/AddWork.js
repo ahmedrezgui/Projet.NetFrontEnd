@@ -4,119 +4,135 @@ import { Container } from 'react-bootstrap';
 import AddEvents from './addEvents';
 import AddTasks from './addTasks';
 import AddMeetings from './addMeetings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
   
 
-const AddWork = () => {  
-    const [state, setState] = useState('');
+const AddWork = () => {
+    const [state, setState] = useState('Task');
     const [members, setMembers] = useState([]);
+    const [allMembers, setAllMembers] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
 
-   
-  useEffect(() => {
-    const data2 = [
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
-      },
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
-      },
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
-      },
-      {
-        "id": "59c8616b-e192-4298-be85-0353339874a6",
-        "name": "Jhon Paul La crème"
-      },
-      {
-        "id": "eeee3152-5ebe-4b5e-af1f-2ff62103ea79",
-        "name": "Gustave Grenouille"
-      },
-      {
-        "id": "c1328496-7b7d-46e3-8bb5-38725136bf52",
-        "name": "Marc Club"
-      },
-      {
-        "id": "313f1375-587b-43ff-becb-50efa45ddc42",
-        "name": "Papasdodoupolus "
+
+
+    useEffect(() => {
+
+    const fetchMembers = async () => {
+      try {
+        let token=localStorage.getItem('JwtToken');
+        // Fetch data from the API
+        const response = await fetch('https://localhost:7181/Auth',{
+          headers:{
+          'Authorization':'bearer '+token,
+          }
+        });
+        // Check if the response is successful
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        // Parse the JSON data
+        const data = await response.json();
+
+        // Update the state with the fetched events
+      
+        setAllMembers(data);
+        setMembers(data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
       }
-    ];
+    };
 
-    setMembers(data2);
-  }, []); 
-return (
+    // Call the fetchEvents function
+    fetchMembers();
+  }, []); // Empty dependency array ensures the effect runs only once (on mount)
 
-    <Container className='Big-container'>
-      <div className='conteneur'>
-      <div className='left-panel-1'>
-        Select Member
-      </div>
-      <div className='right-panel-1'>
-        <div className='formtype' style={{backgroundColor : state==="Task" ? '#F7C159' : ' #CCCAC7'}}
-         onClick={(e)=>{e.preventDefault();
-         setState('Task');}}>
-          Task
-        </div>
-        <div  className='formtype' style={{backgroundColor : state==="Meeting" ? '#F7C159' : ' #CCCAC7'}}
-         onClick={(e)=>{e.preventDefault();
-            setState('Meeting');
+    const handleInputChange = (e) => {
+        let inputValue = e.target.value;
+        setSearchValue(inputValue);
+        if (!inputValue) {
+            setMembers(allMembers);
+            return;
+        }
+        inputValue=inputValue.toLowerCase();
+        let mmbr=[];
+
+        allMembers.map((member) => {
+           let memberFirstName=member.firstName.toLowerCase();
+           let memberLastName=member.lastName.toLowerCase();
+           let memberFullName=memberFirstName+" "+memberLastName;
+           let memberReverseFullName=memberLastName+" "+memberFirstName;
+            if(memberFirstName.startsWith(inputValue) || memberLastName.startsWith(inputValue) || memberReverseFullName.startsWith(inputValue) || memberFullName.startsWith(inputValue)){
+                mmbr.push(member);
+            }
+        })
+       setMembers(mmbr);
+    };
+
+return (<>
+
+
+
+          <div style={{width: "90%",height:"90vh",borderRadius:"3vh"}}>
+
+            <Container className='Big-container' style={{
+              width: "100vh",
+              marginLeft: "5vh",
+              borderRadius: "3vh",
+              backgroundColor: "rgb(235, 235, 235)"
             }}>
-          Meeting
-        </div>
-        <div  className='formtype' style={{backgroundColor : state==="Event" ? '#F7C159' : ' #CCCAC7'}}
-         onClick={(e)=>{e.preventDefault();
-            setState('Event');}}>
-          Event
-        </div>
-      </div>
-      </div>
-      {state === 'Event' ? (
-        <AddEvents members={members} />
-      ) : state === 'Meeting' ? (
-        <AddMeetings members={members} />
-      ) : (
-        <AddTasks members={members} />
-      )}
+              <form className="search-form" >
+                <div className="input-wrapper">
+                  <input type="text" placeholder="Search..." value={searchValue} onChange={handleInputChange}/>
+                  <div className="icon-placeholder">
+                    <FontAwesomeIcon icon={faSearch}/>
+                  </div>
+                </div>
+              </form>
+              <div className='conteneur'>
 
-      </Container>
+                <div className='left-panel-1'>
+                  Select Member
+                </div>
+                  <div className='right-panel-1'>
+                      <div className='formtype' style={{backgroundColor: state === "Task" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Task');
+                           }}>
+                          Task
+                      </div>
+                      <div className='formtype' style={{backgroundColor: state === "Meeting" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Meeting');
+                           }}>
+                          Meeting
+                      </div>
+                      <div className='formtype' style={{backgroundColor: state === "Event" ? '#F7C159' : ' #CCCAC7'}}
+                           onClick={(e) => {
+                               e.preventDefault();
+                               setState('Event');
+                           }}>
+                          Event
+                      </div>
+                  </div>
+              </div>
+                {state === 'Event' ? (
+                    <AddEvents members={members}/>
+                ) : state === 'Meeting' ? (
+                    <AddMeetings members={members}/>
+                ) : (
+                    <AddTasks members={members}/>
+                )}
+
+            </Container>
+          </div>
+
+
+    </>
 )
 }
 export default AddWork;

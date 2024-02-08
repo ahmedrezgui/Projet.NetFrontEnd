@@ -5,7 +5,7 @@ import Hide from "../Assets/hide.svg"
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const Login = () => {
+const Login = ({setAuthenticated, redirect}) => {
   const backgroundStyle = {
     backgroundImage: `url(${BgImage})`,
     backgroundSize: 'cover',
@@ -46,6 +46,7 @@ const Login = () => {
           const response = await axios.post('https://localhost:7181/Auth/login', {
               Email: email,
               Password: password,
+              RememberMe: rememberMe,
           }, { withCredentials: true });
 
           if (response.status === 200) {
@@ -57,7 +58,9 @@ const Login = () => {
 
               // Set the JWT token in the browser's local storage
               localStorage.setItem('JwtToken', jwtToken);
-
+              if(redirect){
+                setAuthenticated('authenticated')
+              }
 
 
           } else {
