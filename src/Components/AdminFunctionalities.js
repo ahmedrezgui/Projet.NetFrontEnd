@@ -2,12 +2,36 @@ import React ,{useState , useEffect} from 'react';
 import '../Style/addEvents.css';
 import Sidebar from '../component/sidebar'
 import AddRemoveMember from "./AddRemoveMember";
+import Spinner from 'react-bootstrap/Spinner';
+import {checkAdmin,checkLoggedIn} from "../Helper/utils";
 
 import AddWork from "./AddWork";
 
 const AdminFunctionalities = () => {
 const [functionality, setfunctionality] = useState('Add/Remove Member');
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await checkAdmin(setIsAdmin);
+        };
+
+        fetchData(); // Call the async function immediately
+
+    }, []);
+
+    {/* useEffect(() => {
+        const fetchData = async () => {
+            await checkLoggedIn(setIsDataLoaded)
+
+        };
+
+        fetchData(); // Call the async function immediately
+
+    }, []);*/}
+    if(isAdmin){
     return (<>
 
             <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"150vh"}}>
@@ -54,7 +78,20 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
 
 
         </>
-    )
+    )}
+    else {
+        return (<>
+            <div  className="flex flex-row items-center justify-center h-screen w-screen " style={{background: "#EBEBEB"}} >
+
+                <Spinner animation="grow" variant="warning" style={{width:"1.5vw",height:"1.5vw",marginRight:"0.5vw"}}/>
+                <Spinner animation="grow" variant="warning" style={{width:"2vw",height:"2vw",marginRight:"0.5vw"}}/>
+                <Spinner animation="grow" variant="warning"style={{width:"2.5vw",height:"2.5vw"}}/>
+
+
+
+            </div>
+        </>)
+    }
 }
 
 export default AdminFunctionalities;
