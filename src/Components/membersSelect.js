@@ -6,7 +6,6 @@ import {  Form } from 'react-bootstrap';
 
 const MembersSelect = (props) => {  
   
-    const [selectedMembers, setSelectedMembers] = useState([]);
     const selectStyle=(props.selectStyle)?{height:props.selectStyle}:{};
 
 

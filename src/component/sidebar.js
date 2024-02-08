@@ -2,67 +2,79 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks, faCalendarAlt, faUsers, faBell, faCog } from '@fortawesome/free-solid-svg-icons';
 import '../Style/sidebar.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const Sidebar = ({isAdmin}) => {
+const Sidebar = (props) => {
   const [activeItem, setActiveItem] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const sidebarItems = [
+    { id: 'tasks', route: '/task', icon: faTasks, label: 'Tasks' },
+    { id: 'events', route: '/events', icon: faCalendarAlt, label: 'Events' },
+    { id: 'meetings', route: '/meeting', icon: faUsers, label: 'Meetings' },
+    { id: 'anonym', route: '/anonymbox', icon: 'bi bi-file-lock-fill', label: 'Anonymbox' },
+    { id: 'manage', route: '/functionalities', icon: 'bi bi-person-fill', label: 'Manage' },
+  ];
 
   const handleItemClick = (item) => {
-    setActiveItem(item); 
+    setActiveItem(item.id);
+    if (item.id === 'profile') {
+      // Handle special case for the "cactus cactus" user name
+      navigate('/profile');
+    } else {
+      navigate(item.route);
+    }
+  };
+
+  const isItemActive = (item) => location.pathname.includes(item.route);
+
+  const handleLogout = () => {
+    navigate('/login');
   };
 
   return (
     <div className='back'>
-    <div className="sidebar">
-      <div className="sidebar-item" style={{ color: 'black' }}>
-        <div className='icon-size'>
-          <i className="bi bi-person-circle "></i>
+      <div className="sidebar">
+        <div
+          className="sidebar-item"
+          style={{ color: 'black' }}
+          onClick={() => handleItemClick({ id: 'profile' })}
+        >
+          <div className='icon-size'>
+            <i className="bi bi-person-circle "></i>
+          </div>
+          <div>
+            <div className='userName'>cactus cactus</div>
+            <div className='userStatus'>ressources humaines</div>
+          </div>
         </div>
-        <div>
-          <div className='userName'>cactus cactus</div>
-          <div className='userStatus'>ressources humaines</div>
-        </div>
-      </div>
-      <div className='items'>
-        <div className="sidebar-item" style={{ color: activeItem === 'tasks' ? 'black' : 'grey' }} onClick={() => handleItemClick('tasks')}>
-          <div className={`tickedDiv ${activeItem === 'tasks' ? 'visible' : ''}`}></div>
-          <FontAwesomeIcon icon={faTasks} />
-          <div className='item'>Tasks </div>
-        </div>
-        <div className="sidebar-item" style={{ color: activeItem === 'events' ? 'black' : 'grey' }} onClick={() => handleItemClick('events')}>
-          <div className={`tickedDiv ${activeItem === 'events' ? 'visible' : ''}`}></div>
-          <FontAwesomeIcon icon={faCalendarAlt} />
-          <div className='item'>Events </div>
-        </div>
-        <div className="sidebar-item" style={{ color: activeItem === 'meetings' ? 'black' : 'grey' }} onClick={() => handleItemClick('meetings')}>
-          <div className={`tickedDiv ${activeItem === 'meetings' ? 'visible' : ''}`}></div>
-          <FontAwesomeIcon icon={faUsers} />
-          <div className='item'>Meetings </div>
-        </div>
-        <div className="sidebar-item" style={{ color: activeItem === 'notifications' ? 'black' : 'grey' }} onClick={() => handleItemClick('notifications')}>
-          <div className={`tickedDiv ${activeItem === 'notifications' ? 'visible' : ''}`}></div>
-          <FontAwesomeIcon icon={faBell} />
-          <div className='item'>Notifications </div>
-        </div>
-        <div className="sidebar-item" style={{ color: activeItem === 'anonym' ? 'black' : 'grey' }} onClick={() => handleItemClick('anonym')}>
-          <div className={`tickedDiv ${activeItem === 'anonym' ? 'visible' : ''}`}></div>
-          <i class="bi bi-file-lock-fill"></i>
-          <div className='item'>anonymbox </div>
-       </div>
-       {isAdmin &&(
-        <div className="sidebar-item" style={{ color: activeItem === 'manage' ? 'black' : 'grey' }} onClick={() => handleItemClick('manage')}>
-          <div className={`tickedDiv ${activeItem === 'manage' ? 'visible' : ''}`}></div>
-          <i class="bi bi-person-fill"></i>
-          <div className='item'>Manage </div>
-        </div>)}
-      </div>
-      <div className="Settings" >
-      <i class="bi bi-gear-fill"></i>
-      <div className='item'> Settings </div>
-      </div>
-      <button className='out'>Log Out</button>
-    </div>
-    </div>
 
+        <div className='items'>
+          {sidebarItems.map((item) => (
+            <div
+              key={item.id}
+              className="sidebar-item"
+              style={{ color: isItemActive(item) ? 'black' : 'grey' }}
+              onClick={() => handleItemClick(item)}
+            >
+              <div className={`tickedDiv ${isItemActive(item) ? 'visible' : ''}`}></div>
+              {typeof item.icon === 'string' ? <i className={item.icon}></i> : <FontAwesomeIcon icon={item.icon} />}
+              <div className='item'>{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="Settings">
+          <i className="bi bi-gear-fill"></i>
+          <div className='item'>Settings</div>
+        </div>
+
+        <button className='out' onClick={() => handleLogout()}>
+          Log Out
+        </button>
+      </div>
+    </div>
   );
 };
 

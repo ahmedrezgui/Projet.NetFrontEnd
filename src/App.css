@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+.principal{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top:7vh;
+}
+
+.secondComp{
+  width: 50vw;
+  height: 140vh;
+  margin-left: 7vw;
+  background-color: white;
+  margin-top: 6vh;
+  border-radius: 4vh;
+  padding-top: 2vh;
+  overflow: hidden;
+
+}
