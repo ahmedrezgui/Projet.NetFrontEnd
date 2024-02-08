@@ -12,11 +12,11 @@ function Profile() {
 
     const [history, setHistory] = useState([]);
     const [blames, setBlames] = useState();
+    const [medals, setMedals] = useState();
     const [user, setUser] = useState({});
     const [role, setRole] = useState();
 
     let token = localStorage.getItem('JwtToken');
-    console.log(token);
     const getUserHistory = async () => {
         try {
             // Fetch data from the API
@@ -32,7 +32,6 @@ function Profile() {
 
             // Parse the JSON data
             const data = await response.json();
-            console.log(data);
             // Update the state with the fetched events
 
             setHistory(data.histoData);
@@ -55,8 +54,25 @@ function Profile() {
 
             });
             const data = await response.json();
-            console.log(data);
             setBlames(data);
+        } catch (error) {
+            console.log("Error: " + error);
+        }
+    }
+
+    const getUserMedals = async () => {
+        try {
+            const response = await fetch(`https://localhost:7181/medals/user`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                },
+
+            });
+            const data = await response.json();
+            console.log(data);
+            setMedals(data);
         } catch (error) {
             console.log("Error: " + error);
         }
@@ -81,6 +97,7 @@ function Profile() {
     useEffect(() => {
         getUserHistory();
         getUserBlames();
+        getUserMedals();
     }, []);
 
     return (
@@ -119,7 +136,7 @@ function Profile() {
                                     blamesBtn ? <Blames data={blames} /> : null
                                 }
                                 {
-                                    medBtn ? <Medaille /> : null
+                                    medBtn ? <Medaille data={medals} /> : null
                                 }
                             </ul>
                         </div>
