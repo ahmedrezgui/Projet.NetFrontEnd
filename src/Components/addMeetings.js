@@ -53,7 +53,7 @@ const AddMeetings = (props) => {
       errors.location="Location is required"
     }
 
-    if(!selectedMembers.length===0)
+    if(selectedMembers.length===0)
     {
       errors.selectedMembers="At least one member is required"
     }
@@ -128,9 +128,10 @@ const AddMeetings = (props) => {
 <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
+
                     />       
-                    <div className='error' >{formErrors.selectedMembers && <div className="error">{formErrors.selectedMembers}</div>}
-              </div>
+                
                      <div className='right-panel-2'>
            {/* Text Input */}
         <Form.Group controlId="name">
