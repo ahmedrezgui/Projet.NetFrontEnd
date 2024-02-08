@@ -3,16 +3,17 @@ import '../Style/addEvents.css';
 import {Form, Button } from 'react-bootstrap';
 
 
-
-const BlameForm = () => {  
+const BlameForm = (props) => {  
   
+  
+
     // State for the form fields
     const [reason, setReason] = useState('');
     const [isBlameChecked, setIsBlameChecked] = useState(true);
     const [isAvertissementChecked, setIsAvertissementChecked] = useState(false);
+
     // Select 
-    const [selectedMembers, setSelectedMembers] = useState([]);
-  
+
     //checkboxes
     const handleBlameChange = () => {
       setIsBlameChecked(true);
@@ -29,27 +30,33 @@ const BlameForm = () => {
     const handleBlameSubmit = async (event) => {
       event.preventDefault(); 
   
+      const users = props.selectedMembers;
+
+      let token=localStorage.getItem('JwtToken');
+
       const blame = {
         //select
-          member: selectedMembers,
+          userId: props.selectedMembers,
         //
           Object:reason,
           Name: isBlameChecked ? "Blame" : "Advertisement" ,
           Date: new Date().toISOString(),
+          
       }
       try {
-      const response = await fetch('/api/Profile', {
+      const response = await fetch('https://localhost:7181/blames', {
         method: 'POST',
         body: JSON.stringify(blame),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'bearer ' + token,
         }
       })
   
       if (response.ok) {
           alert('Blame added successfully');
           setReason('');
-          setSelectedMembers([]);
+          props.setSelectedMembers([]);
 
         } else {
           console.error('Failed to add blame:', response);

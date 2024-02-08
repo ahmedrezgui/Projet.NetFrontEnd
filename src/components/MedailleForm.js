@@ -3,33 +3,37 @@ import '../Style/addEvents.css';
 import {Form, Button } from 'react-bootstrap';
 
 
-const MedailleForm = () =>{
+const MedailleForm = (props) =>{
     
     // State for the form fields
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
     // Select 
-    const [selectedMembers, setSelectedMembers] = useState([]);
+    const [selectedMembers, setSelectedMembers] = useState("");
 
     //handler for the submission
     const handleMedailleSubmit = async (event) => {
       event.preventDefault(); 
   
+      const users = props.selectedMembers;
+      let token=localStorage.getItem('JwtToken');
+
       const medaille = {
         //select
-          member: selectedMembers,
+          userId: props.selectedMembers,
         //
           Name:name,
           Description:description,
-          Date: new Date().toISOString(),
+          
       }
       try {
-      const response = await fetch('/api/Profile/Medals', {
+      const response = await fetch('https://localhost:7181/medals', {
         method: 'POST',
         body: JSON.stringify(medaille),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'bearer ' + token,
         }
       })
   

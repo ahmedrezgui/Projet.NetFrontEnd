@@ -2,17 +2,18 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from './profile';
 import TaskContainer from './TaskContainer';
-import CheckEvents from './Components/checkEvents';
-import AddWork from './Components/AddWork';
-import Login from './Components/Login';
-import Meeting from './Components/meeting';
+
+import CheckEvents from './components/checkEvents';
+import AddWork from './components/AddWork';
+import Login from './components/Login';
+import Meeting from './components/meeting';
 
 import Sidebar from './component/sidebar';
 import AnonymBox from './AnonymBox';
 import  ViewBoxSection from './ViewBoxSection';
-import AdminFunctionalities from "./Components/AdminFunctionalities";
-import Scan from './Components/scan';
-import Confirm from './Components/confirm';
+import AdminFunctionalities from "./components/AdminFunctionalities";
+import Scan from './components/scan';
+import Confirm from './components/confirm';
 import AddBlame from './components/AddBlame';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -35,15 +36,13 @@ function App() {
 
 
         <Route path='/comments' element={<ViewBoxSection/>}/>
+        <Route path='/blames' element={<AddBlame/>}/>
 
 
 
 
         <Route path="/login">
         </Route>
-        <Route path="/api/Manage/addBlame"
-              element={<AddBlame/>}
-        />
       </Routes>
     </Router>
   );

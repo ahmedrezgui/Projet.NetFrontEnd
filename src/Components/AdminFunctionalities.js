@@ -3,6 +3,7 @@ import '../Style/addEvents.css';
 import Sidebar from '../component/sidebar'
 
 import AddWork from "./AddWork";
+import AddBlame from './AddBlame';
 
 const AdminFunctionalities = () => {
 const [functionality, setfunctionality] = useState('Add/Remove Member');
@@ -45,6 +46,8 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
 
                     </div>
                     {functionality==="Add Task" ? <AddWork/> : <></>}
+                    {functionality==="Add Blame" ? <AddBlame/> : <></>}
+
                 </div>
 
             </div>
