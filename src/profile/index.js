@@ -4,6 +4,7 @@ import { useState } from "react";
 import Historique from "./Historique";
 import Blames from "./Blames";
 import Medaille from "./Medaille";
+import Sidebar from "../component/sidebar";
 
 function Profile() {
     const [histBtn, setHistBtn] = useState(true);
@@ -102,11 +103,14 @@ function Profile() {
 
     return (
         <>
-            <div className="h-screen flex  justify-center" style={{ background: "#EBEBEB" }}>
-                <div className="bg-white my-10 rounded-3xl mr-10 w-1/5">
 
-                </div>
-                <div className="grid grid-rows-5 gap-10 justify-items-center w-1/2 bg-white my-10 ml-10 rounded-3xl">
+
+            <div className="h-screen flex justify-center pt-4 pr-6" style={{ background: "#EBEBEB" }}>
+                <div className=" my-10 rounded-3xl mr-10 w-1/5" >
+                    <Sidebar />
+
+                </div >
+                <div className="grid grid-rows-5 gap-10 justify-items-center w-3/5 bg-white my-10 ml-10 rounded-3xl " style={{height:"88.5%"}}>
                     <div className="row-span-1 grid grid-cols-4 w-full px-10 pt-6 pb-4">
                         <div className="col-span-1 flex justify-center pl-10 mb-4">
                             <svg width="150" height="140" viewBox="0 0 161 161" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,6 +149,7 @@ function Profile() {
                 </div>
 
             </div>
+
         </>
     )
 

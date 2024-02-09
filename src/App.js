@@ -9,56 +9,64 @@ import Login from './Components/Login';
 import Meeting from './Components/meeting';
 import Sidebar from './component/sidebar';
 import AnonymBox from './AnonymBox';
-import  ViewBoxSection from './ViewBoxSection';
+import ViewBoxSection from './ViewBoxSection';
 import AdminFunctionalities from "./Components/AdminFunctionalities";
 import Scan from './Components/scan';
 import Confirm from './Components/confirm';
 import AddBlame from './Components/AddBlame';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 
 
 function App() {
 
-  
+
 
   return (
-      <>
-          <Router >
-              <Routes>
-                  <Route path='/login' element={<Login></Login>}> </Route>
-                  </Routes>
+    <>
+      <Router >
+        <Routes>
+          <Route path='/login' element={<Login></Login>}> </Route>
 
-          </Router>
+        </Routes>
 
-          <Router>
+      </Router>
+      <Router >
+      
 
-              <div className=" principal" id='greybg' style={{background: "#EBEBEB",height:"auto",minHeight:"150vh",paddingBottom:"6vh"}}>
+      </Router>
 
-                  <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>
-                      <Sidebar   />
 
-                  </div >
-                  <div className='secondComp'>
-                      <Routes>
+      <Router>
 
-                          <Route path="/events" Component={CheckEvents}></Route>
-                          <Route path="/functionalities" Component={AdminFunctionalities}></Route>
-                          <Route path='/task' element={<TaskContainer/>}  />
-                          <Route path='/meeting' element={<Meeting />} />
-                          <Route path='/anonymbox' element={<AnonymBox/>}/>
-                          <Route path='/profile' element={<Profile />} />
-                          <Route path="/scan/:meetingId" element={<Scan/>} />
-                          <Route path='/comments' element={<ViewBoxSection/>}/>
-                          <Route path='/blames' element={<AddBlame/>}/>
-                      </Routes>
-                  </div>
-              </div>
+      <Routes>
+          <Route path='/profile' element={<Profile />} />
+        </Routes>
+        <div className=" principal" id='greybg' style={{ background: "#EBEBEB", height: "auto", minHeight: "150vh", paddingBottom: "6vh" }}>
 
-          </Router>
+          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{ position: "fixed" }}>
+            <Sidebar />
 
-      </>
+          </div >
+          <div className='secondComp'>
+            <Routes>
+
+              <Route path="/events" Component={CheckEvents}></Route>
+              <Route path="/functionalities" Component={AdminFunctionalities}></Route>
+              <Route path='/task' element={<TaskContainer />} />
+              <Route path='/meeting' element={<Meeting />} />
+              <Route path='/anonymbox' element={<AnonymBox />} />
+              <Route path="/scan/:meetingId" element={<Scan />} />
+              <Route path='/comments' element={<ViewBoxSection />} />
+              <Route path='/blames' element={<AddBlame />} />
+            </Routes>
+          </div>
+        </div>
+
+      </Router>
+
+    </>
   );
 }
 
