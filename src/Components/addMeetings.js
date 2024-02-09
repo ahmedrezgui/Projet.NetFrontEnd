@@ -18,7 +18,21 @@ const AddMeetings = (props) => {
   const [day, setDay] = useState('jj/mm/aaaa');
   const [hour, setHour] = useState('--:--');
   const [formErrors, setFormErrors] = useState({});
- 
+  const [generalSuccess, setGeneralSuccess] = useState('');
+
+  useEffect(() => {
+    let timeoutId;
+    if (generalSuccess !== '') {
+        timeoutId = setTimeout(() => {
+            setGeneralSuccess('');
+        }, 4000); // 30 seconds
+    }
+
+    return () => {
+        clearTimeout(timeoutId);
+    };
+}, [generalSuccess]);
+
   const handleSelectChange = (memberId) => {
     // Check if the memberId is already in selectedMembers
     if (selectedMembers.includes(memberId)) {
@@ -85,15 +99,20 @@ const AddMeetings = (props) => {
           body: JSON.stringify(meetingData),
         });
 
-        if (!response.ok) {
+        if (!response.ok)  if(response.status===401){
+          window.location.href = '/login';
+      }
+      else {
+
           throw new Error('Network response was not ok');
-        }
+      }
 
         console.log('Event data posted successfully!');
         // Handle any additional actions upon successful submission
       } catch (error) {
         console.error('Error posting event data:', error);
       }
+      setGeneralSuccess('Meeting added successfully')
       setSelectedMembers([]);
       setDescripion('');
       setName('');
@@ -134,6 +153,8 @@ const AddMeetings = (props) => {
                 
                      <div className='right-panel-2'>
            {/* Text Input */}
+           {generalSuccess!=='' ? <div style={{color:"green"}}>{generalSuccess}</div>: ""}
+
         <Form.Group controlId="name">
           <Form.Label>Insert Meeting Info</Form.Label>
           <Form.Control type="text"  placeholder="Enter some text" className='input'  value={name}

@@ -2,13 +2,20 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    height: 650px;
-    width: 230px ;
-    border-radius: 7%;
+    padding-left: 2vw;
+    padding-left: 2vw;
+    padding-top: 4vh;
+    padding-bottom: 10vh;
+    height: 95vh;
+    width: 23vw ;
+    border-radius: 4vh;
     border:#FFFFFF;
-    margin: 2%;
     background-color: #FFFFFF;
+    margin: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px; /* Set a top value to make it sticky from the top */
+    z-index: 1;
   }
   .sidebar-item {
     display: flex;
@@ -77,6 +84,8 @@
     background-color: #EBEBEB;
     padding: 0;
     margin: 0;
+    position: sticky;
+    top: 1;
   }
 
   .Settings{
@@ -84,8 +93,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     font-size: 20px;
-    margin-top: 55%;
-    margin-bottom: 10%;
+    margin-top: 25%;
     font-family: inter;
     cursor: pointer;
     font-weight: 550;
@@ -93,11 +101,12 @@
   .out{
     background-color: #F7C159;
     border-radius: 19px;
-    height: 40px;
-    width:130px;
+    height: 6vh;
+    width:9vw;
     align-self: center;
     font-family: inter;
     font-weight: bolder;
     cursor: pointer;
+    margin-top: 5%;
 
   }

@@ -3,6 +3,9 @@
     font-family: "Inter", sans-serif ;
     font-weight: 500;
     text-align: center;
+    width: 35vw;
+    height: 120vh;
+
   }
   
 .title {
@@ -43,6 +46,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
  }
+
+ .selected{
+  white-space: normal;
+  overflow: visible;
+  text-overflow: initial;
+
+}
 .eventName{
     padding-bottom: 5px;
     white-space: nowrap;
