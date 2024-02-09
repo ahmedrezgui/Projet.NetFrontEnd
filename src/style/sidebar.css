@@ -6,7 +6,7 @@
     padding-left: 2vw;
     padding-top: 4vh;
     padding-bottom: 10vh;
-    height: 95vh;
+    height: 80vh;
     width: 23vw ;
     border-radius: 4vh;
     border:#FFFFFF;
@@ -23,7 +23,7 @@
     flex-wrap: nowrap;
     padding: 0;
     cursor: pointer;
-    font-size: 17px; 
+    font-size: 20px; 
     margin-top: 6%;
     color: rgb(139, 141, 141);
     font-family: inter;
@@ -57,7 +57,7 @@
 
 
   .items{
-    margin-top: 25%;
+    margin-top: 13%;
   }
 
   .icon-size{
@@ -93,7 +93,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     font-size: 20px;
-    margin-top: 25%;
+    margin-top: 20%;
     font-family: inter;
     cursor: pointer;
     font-weight: 550;
