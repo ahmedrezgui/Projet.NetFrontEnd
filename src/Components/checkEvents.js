@@ -33,7 +33,7 @@ const CheckEvents = () => {
 
         data.forEach((e) => {
           setHeightStyle((prevHeightStyle) => prevHeightStyle + 10.65);
-          console.log("tessssssssssttttttttttt")
+         
         });
         console.log("----------------------------------------"+heightStyle)
 
@@ -65,39 +65,55 @@ const CheckEvents = () => {
         <div>{time}</div>
       </div>
     );
+    
   };
-
-  return (
-    <div style={{backgroundColor:"white",height:heightStyle+"vh",margin:"6vh" ,borderRadius:"4vh"}}>
+  const currentDate = new Intl.DateTimeFormat("en-us",{
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+const formattedDate = currentDate.formatToParts()
+const day = formattedDate[0].value
+const month = formattedDate[2].value
+const date = formattedDate[4].value
+  return ( <>
+  
+    <div style={{backgroundColor:"white",width:"3/4",marginLeft:"40px",height:heightStyle+"vh" ,borderRadius:"4vh"}}>
+    <div className="time">
+                <h1 className="daydate">
+                    <span>{day}, {date}</span>
+                </h1>
+                <h2 className="month">
+                    <span>{month}</span>
+                </h2>
+            </div>
     <div className='full-container'>
       <div className='title'> Upcoming events</div>
       <div className='list-container'>
-        {events.map(event => (<>
-              <div className='Item' key={event.id}>
-                {/* Render event details as needed */}
-                <div className='ProprietiesItem'> {
-                  parseDateTime(event.date)
-                } </div>
+        {events.map(event => (
+          <div className='Item' key={event.id} >
+            {/* Render event details as needed */}
+           <div className='ProprietiesItem'> {
+           parseDateTime(event.date)
+           } </div> 
+           <div className='ProprietiesItem'>
+            <div className={panel === event.id ? 'eventName selected' : 'eventName'}> {event.name} </div>
+            <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
+          </div>
+          <div className='buttonContainer'>
+          <button onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
 
-                <div className='ProprietiesItem'>
-                  <div className='eventName'> {event.name} </div>
-                  <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
-                </div>
-                <div className='buttonContainer'>
-                  <button
-                      onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
+            </div>
 
-                </div>
-
-              </div>
-
-
-
-            </>
+          </div>
+        
         ))}
       </div>
-    </div>
-    </div>
+      </div>
+      </div>
+      </>
+
   );
 };
 

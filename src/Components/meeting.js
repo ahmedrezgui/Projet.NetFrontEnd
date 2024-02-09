@@ -40,7 +40,7 @@ function Meeting(){
     const month = formattedDate[2].value
     const date = formattedDate[4].value
     return(
-        <div className="meeting-container w-3/4 ml-[100px]">
+        <div className="meeting-container w-3/4 ml-[40px]">
             <div className="time">
                 <h1 className="text-[50px] font-extrabold">
                     <span>{day}, {date}</span>
