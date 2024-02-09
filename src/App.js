@@ -20,6 +20,7 @@ import {useEffect, useState} from "react";
 
 
 function App() {
+
   
 
   return (
@@ -31,31 +32,31 @@ function App() {
 
           </Router>
 
-    <Router>
+          <Router>
 
-       <div className=" principal" id='greybg' style={{background: "#EBEBEB",height:'150vh'}}> 
+              <div className=" principal" id='greybg' style={{background: "#EBEBEB",height:"auto",minHeight:"150vh",paddingBottom:"6vh"}}>
 
-          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>  
-              <Sidebar   />  
+                  <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>
+                      <Sidebar   />
 
-          </div > 
-          <div className='secondComp'>
-            <Routes>
+                  </div >
+                  <div className='secondComp'>
+                      <Routes>
 
-              <Route path="/events" Component={CheckEvents}></Route>
-              <Route path="/functionalities" Component={AdminFunctionalities}></Route>
-              <Route path='/task' element={<TaskContainer/>}  />
-              <Route path='/meeting' element={<Meeting />} />
-              <Route path='/anonymbox' element={<AnonymBox/>}/>
-              <Route path='/profile' element={<Profile />} />
-              <Route path="/scan/:meetingId" element={<Scan/>} />
-              <Route path='/comments' element={<ViewBoxSection/>}/>
-                 <Route path='/blames' element={<AddBlame/>}/>
-            </Routes>
-            </div>
-       </div> 
+                          <Route path="/events" Component={CheckEvents}></Route>
+                          <Route path="/functionalities" Component={AdminFunctionalities}></Route>
+                          <Route path='/task' element={<TaskContainer/>}  />
+                          <Route path='/meeting' element={<Meeting />} />
+                          <Route path='/anonymbox' element={<AnonymBox/>}/>
+                          <Route path='/profile' element={<Profile />} />
+                          <Route path="/scan/:meetingId" element={<Scan/>} />
+                          <Route path='/comments' element={<ViewBoxSection/>}/>
+                          <Route path='/blames' element={<AddBlame/>}/>
+                      </Routes>
+                  </div>
+              </div>
 
-    </Router>
+          </Router>
 
       </>
   );

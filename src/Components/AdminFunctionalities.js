@@ -69,7 +69,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
     if(isAdmin){
     return (<>
 
-            <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"150vh"}}>
+            <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"auto"}}>
                 {/* <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
                 <Sidebar ></Sidebar>
                 </div > */}

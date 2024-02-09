@@ -4,6 +4,7 @@ const CheckEvents = () => {
   // State to store the fetched events
   const [events, setEvents] = useState([]);
   const [panel,setPanel] = useState(null);
+  const [heightStyle,setHeightStyle]=useState(2)
 
   useEffect(() => {
     // Function to fetch data
@@ -25,8 +26,17 @@ const CheckEvents = () => {
         // Parse the JSON data
         const data = await response.json();
         console.log(data);
+
         // Update the state with the fetched events
         setEvents(data);
+
+
+        data.forEach((e) => {
+          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10.65);
+          console.log("tessssssssssttttttttttt")
+        });
+        console.log("----------------------------------------"+heightStyle)
+
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -56,32 +66,38 @@ const CheckEvents = () => {
       </div>
     );
   };
+
   return (
-    <div style={{backgroundColor:"white",height:"140vh",margin:"6vh" ,borderRadius:"4vh"}}>
+    <div style={{backgroundColor:"white",height:heightStyle+"vh",margin:"6vh" ,borderRadius:"4vh"}}>
     <div className='full-container'>
       <div className='title'> Upcoming events</div>
       <div className='list-container'>
-        {events.map(event => (
-          <div className='Item' key={event.id} >
-            {/* Render event details as needed */}
-           <div className='ProprietiesItem'> {
-           parseDateTime(event.date)
-           } </div> 
-           <div className='ProprietiesItem'>
-            <div className='eventName'> {event.name} </div>
-            <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
-          </div>
-          <div className='buttonContainer'>
-          <button onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
+        {events.map(event => (<>
+              <div className='Item' key={event.id}>
+                {/* Render event details as needed */}
+                <div className='ProprietiesItem'> {
+                  parseDateTime(event.date)
+                } </div>
 
-            </div>
+                <div className='ProprietiesItem'>
+                  <div className='eventName'> {event.name} </div>
+                  <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
+                </div>
+                <div className='buttonContainer'>
+                  <button
+                      onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
 
-          </div>
-        
+                </div>
+
+              </div>
+
+
+
+            </>
         ))}
       </div>
-      </div>
-      </div>
+    </div>
+    </div>
   );
 };
 

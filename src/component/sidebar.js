@@ -60,6 +60,7 @@ const Sidebar = (props) => {
   const isItemActive = (item) => location.pathname.includes(item.route);
 
   const handleLogout = () => {
+    localStorage.clear();
     navigate('/login');
   };
 
