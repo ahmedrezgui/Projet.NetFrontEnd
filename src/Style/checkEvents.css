@@ -46,6 +46,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
  }
+
+ .selected{
+  white-space: normal;
+  overflow: visible;
+  text-overflow: initial;
+
+}
 .eventName{
     padding-bottom: 5px;
     white-space: nowrap;

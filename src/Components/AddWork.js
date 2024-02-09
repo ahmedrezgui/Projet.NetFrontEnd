@@ -29,9 +29,14 @@ const AddWork = () => {
           }
         });
         // Check if the response is successful
-        if (!response.ok) {
+        if (!response.ok)
+        if(response.status===401){
+          window.location.href = '/login';
+      }
+      else {
+
           throw new Error('Network response was not ok');
-        }
+      }
 
         // Parse the JSON data
         const data = await response.json();
