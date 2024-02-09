@@ -4,7 +4,8 @@ const CheckEvents = () => {
   // State to store the fetched events
   const [events, setEvents] = useState([]);
   const [panel,setPanel] = useState(null);
-  const [heightStyle,setHeightStyle]=useState(2)
+  const [heightStyle,setHeightStyle]=useState(70)
+    const [heightItem,setHeightItem]=useState(20)
 
   useEffect(() => {
     // Function to fetch data
@@ -32,7 +33,8 @@ const CheckEvents = () => {
 
 
         data.forEach((e) => {
-          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10.65);
+          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10);
+          console.log(data)
          
         });
         console.log("----------------------------------------"+heightStyle)
@@ -49,7 +51,10 @@ const CheckEvents = () => {
 
  const handleCLick =(id)=>{
   setPanel(panel === id ? null : id);
-}
+
+     }
+
+
 
   const parseDateTime = (dateTimeString) => {
     // Parse the date string

@@ -2,9 +2,7 @@ import React ,{useState , useEffect} from 'react';
 import '../Style/addEvents.css';
 import Sidebar from '../component/sidebar'
 import AddRemoveMember from "./AddRemoveMember";
-import Spinner from 'react-bootstrap/Spinner';
-import {checkAdmin,checkLoggedIn} from "../Helper/utils";
-import Loading from "./loading";
+
 
 import AddWork from "./AddWork";
 import AddBlame from './AddBlame';
@@ -13,7 +11,7 @@ const AdminFunctionalities = () => {
 const [functionality, setfunctionality] = useState('Add/Remove Member');
 
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
+
 
     const [user, setUser] = useState({});
     const getUserHistory = async () => {
@@ -48,14 +46,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
 
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await checkAdmin(setIsAdmin);
-        };
 
-        fetchData(); // Call the async function immediately
-
-    }, []);
 
     {/* useEffect(() => {
         const fetchData = async () => {
@@ -66,7 +57,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
         fetchData(); // Call the async function immediately
 
     }, []);*/}
-    if(isAdmin){
+
     return (<>
 
             <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"auto"}}>
@@ -114,16 +105,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
 
 
         </>
-    )}
-    else {
-        return (<>
-
-
-
-
-           <Loading></Loading>
-        </>)
-    }
+    )
 }
 
 export default AdminFunctionalities;

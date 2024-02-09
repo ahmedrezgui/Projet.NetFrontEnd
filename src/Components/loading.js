@@ -1,6 +1,7 @@
 import Spinner from "react-bootstrap/Spinner";
 import React from "react";
 
+
 const Loading = () => {
     return(
         <div  className="flex flex-row items-center justify-center h-screen w-screen " style={{background: "#EBEBEB"}} >
