@@ -5,12 +5,13 @@ import './ScrollBar.css';
 import AnonymBoxCommentRef from './AnonymBoxCommentRef';
 
 const AnonymBoxCommentRefContainer = ({ onChildClick }) => {
+  let token=localStorage.getItem('JwtToken');
   const [data, setData] = useState([]);
-
   useEffect(() => {
     axios.get('https://localhost:7181/AnonymBoxComment/index', {
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization':'bearer '+token,
       }
     })
       .then(response => setData(response.data))

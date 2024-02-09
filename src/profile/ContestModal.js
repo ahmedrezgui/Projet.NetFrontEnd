@@ -1,32 +1,42 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ContestModal({ visible, blame, onClose }) {
+
     const [inputValue, setInputValue] = useState(blame.contention);
+    useEffect(() => {
+        // Update inputValue when blame changes
+        setInputValue(blame.contention);
+    }, [blame]);
 
     const handleInput = (e) => {
         setInputValue(e.target.value);
     }
     const handleOnClose = (e) => {
-        if (e.target.id === "container") onClose();
+        if (e.target.id === "container") { setInputValue(blame.contention); onClose(); };
     }
 
     const updateContest = async () => {
         try {
-            const response = await fetch(`https://localhost:7181/api/Profile/${blame.id}`, {
-                method: 'PUT',
+            let token = localStorage.getItem("JwtToken");
+            const response = await fetch(`https://localhost:7181/blames/${blame.id}`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
                 },
-                body: JSON.stringify({
-                    contestation: inputValue,
-                })
+                body: JSON.stringify([
+                    {
+                        op: 'replace',
+                        path: '/Contention',
+                        value: inputValue,
+                    },
+                ])
             });
-            const data = await response.json();
-            console.log(data);
         } catch (error) {
             console.log("Error: " + error);
         }
+        onClose();
     }
 
     if (!visible) return null;
@@ -34,7 +44,7 @@ function ContestModal({ visible, blame, onClose }) {
         <>
             <div id="container"
                 onClick={handleOnClose}
-                className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+                className="fixed inset-0 bg-black bg-opacity-10 backdrop-blur-sm flex justify-center items-center">
                 <div className="bg-white rounded grid grid-row-6 grid-cols-1 w-1/4 h-2/5 px-4 pt-4 pb-2 gap-2">
                     <div className="row-span-1 text-lg font-semibold justify-self-center ">Contestation</div>
                     <textarea

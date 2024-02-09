@@ -36,4 +36,6 @@
     text-align: center;
     padding: 0.5vh 5vw;
     width: fit-content;
+    background: #F7C159;
+    border-radius: 19px;
 }

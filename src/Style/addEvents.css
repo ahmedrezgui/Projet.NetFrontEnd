@@ -29,10 +29,10 @@
 
   /* Active/Clicked styles */
    .formtype :active {
-    cursor: pointer; 
+    cursor: pointer;
   }
 
- 
+
   .conteneur{
     display: flex;
     flex-wrap: nowrap ;
@@ -43,13 +43,13 @@
 
   .right-panel-1 {
     width: 60%;
-    padding: 5%;   
+    padding: 5%;
     display: grid;
-    grid-template-columns: auto auto auto;  
+    grid-template-columns: auto auto auto;
     padding-bottom: 0% ;
     text-align: center;
-    
-    
+
+
     /* Add your styles here */
   }
 
@@ -57,17 +57,17 @@
     width: 35%;
     font-size: 135%;
     font-weight:500 ;
-    padding: 3%;   
+    padding: 3%;
     padding-bottom:0;
     margin-bottom: 2%;
     margin-left: 3%;
     border-bottom: 2px groove black;
 
 
-    
+
     /* Add your styles here */
   }
-  
+
   .sub-container{
     display: flex;
     flex-wrap: nowrap ;
@@ -75,9 +75,9 @@
   .left-panel-sub {
     background-color: white;
     width: 50%;
-    
+
     padding: 5%;
-    
+
     /* Add your styles here */
   }
   .left-panel-2 {
@@ -91,15 +91,15 @@
     border : 1px solid #ced4da;
     border-radius: 15px;
     height: 65vh ;
-  
+
     /* Add your styles here */
   }
-  
+
   .right-panel-sub {
     background-color: white;
     width: 50%;
     padding: 5%;
-   
+
     /* Add your styles here */
   }
 
@@ -117,9 +117,9 @@
 
     /* Add your styles here */
   }
-  
-  
- 
+
+
+
   .event-form label {
       font-size: 70%;
 
@@ -130,7 +130,7 @@
     background-color: #E5E5E5 !important;
     text-align: center;
 
-   
+
   }
 .form-label{
   margin-bottom: 5%;
@@ -174,9 +174,9 @@
 
 .hour-label{
   font-size: small;
-  
+
 }
-  
+
 .day-container{
   margin-top: 5%;
 }
@@ -270,6 +270,19 @@
 }
 .fonction:hover{
     cursor: pointer;
+
+}
+
+.form-check-input:checked {
+    background-color: #F7C159 !important;
+    border-color: #F7C159 !important;
+}
+
+.button{ --bs-btn-bg:#4D4D4D !important;
+    border-radius: 19px !important;
+    height: 5vh !important;
+    margin-top: 1vh;
+    --bs-btn-border-color:none;
 
 }
 
