@@ -8,10 +8,22 @@
 
   }
   
+  .month{
+    
+      font-size: 30px;
+      font-weight: 500; 
+  }
+
+  .daydate{
+    font-size: 50px;
+    
+    font-weight: 900; 
+  
+
+  }
 .title {
     text-align: start;
     margin-top: 20px;
-    padding-left: 10%;
     font-weight: 700;
     font-size: 200%;
 
@@ -48,7 +60,7 @@
  }
 
  .selected{
-  white-space: normal;
+  white-space: normal ;
   overflow: visible;
   text-overflow: initial;
 
@@ -61,6 +73,12 @@
     
 
  }
+ .selected{
+  white-space: normal !important;
+  overflow: visible;
+  text-overflow: initial;
+
+} 
 
 button{
   padding: 10px 20px; /* Adjust padding as needed */

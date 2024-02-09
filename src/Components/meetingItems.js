@@ -70,14 +70,14 @@ function MeetingItem({meetingData, token}){
                     {meetingMonth}
                 </div>
             </div>
-            <div className="meeting-info w-full">
+            <div className="meeting-info w-full whitespace-nowrap overflow-hidden overflow-ellipsis">
                 <h2 className="meeting-title text-[38px] font-semibold">
                     {meetingData?.name}
                 </h2>
                 <p className="meeting-location text-xl">
                     {meetingData?.location}
                 </p>
-                <p className="meeting-description text-xl">
+                <p className="meeting-description text-xl whitespace-nowrap overflow-hidden overflow-ellipsis">
                     {meetingData?.description}
                 </p>
             </div>

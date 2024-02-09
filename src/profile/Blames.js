@@ -25,11 +25,13 @@ function Blames(data) {
             </div>
         );
     };
-
+   
     return (
+        
         <>
             <ul>
                 {
+                    
                     data.data.map((item) => {
                         return (<>
                             <li className="w-full h-full mb-4">

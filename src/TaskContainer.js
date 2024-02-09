@@ -18,13 +18,35 @@ function TaskContainer() {
     }, []);
     console.log(data);
     const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    const currentDate = new Intl.DateTimeFormat("en-us",{
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        timeZone: "UTC",
+      });
+    const formattedDate = currentDate.formatToParts()
+const nowday = formattedDate[0].value
+const nowmonth = formattedDate[2].value
+const nowdate = formattedDate[4].value
     return (
-            
-            <div className='anas-taskcardcontainer'>
-                {data.map(item=>(<TaskCard title={item.name} deadline={new Date(item.deadLine).toLocaleString(undefined,options)}></TaskCard>))}    
+        <div style={{backgroundColor:"white",width:"3/4",marginLeft:"40px" ,borderRadius:"4vh"}}>
+        <div className="time">
+                    <h1 className="daydate">
+                        <span>{nowday}, {nowdate}</span>
+                    </h1>
+                    <h2 className="month">
+                        <span>{nowmonth}</span>
+                    </h2>
             </div>
+            <div className='title'> Your Tasks </div>
+        <div className='anas-taskcardcontainer'>
+          {data.map(item=>(<TaskCard title={item.name} deadline={new Date(item.deadLine).toLocaleString(undefined,options)}></TaskCard>))} 
+        </div>    
+     </div>
+
+        
        
-    );
+    );    
   }
   
   export default TaskContainer;
