@@ -31,7 +31,7 @@ function Blames(data) {
         <>
             <ul>
                 {
-                    
+                    data.data?
                     data.data.map((item) => {
                         return (<>
                             <li className="w-full h-full mb-4">
@@ -60,7 +60,7 @@ function Blames(data) {
                         </>
                         )
                     })
-                }
+                :null}
 
             </ul>
 
