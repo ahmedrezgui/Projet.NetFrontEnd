@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddCommentForm.css"
 import axios from "axios";
 function AddCommentForm()
-{   
+{   let token=localStorage.getItem('JwtToken');
     const [errorMessage,setErrorMessage]=useState("")
     const [successMessage,setSuccessMessage]=useState("")
     const successStyle=
@@ -31,7 +31,11 @@ function AddCommentForm()
             else
             {
               try {
-                const response = await axios.post("https://localhost:7181/AnonymBoxComment/create", { Contenu: formData.contenu });
+                const response = await axios.post("https://localhost:7181/AnonymBoxComment/create", { Contenu: formData.contenu },{
+                  headers:{
+                      'Authorization':'bearer '+token,
+                  }
+              });
             
                 if (response.status === 200) {
                   setSuccessMessage("Comment added with success !");
