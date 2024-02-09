@@ -38,8 +38,8 @@ const CheckEvents = () => {
   
 
  const handleCLick =(id)=>{
-   setPanel(id);
-  }
+  setPanel(panel === id ? null : id);
+}
 
   const parseDateTime = (dateTimeString) => {
     // Parse the date string
@@ -57,6 +57,7 @@ const CheckEvents = () => {
     );
   };
   return (
+    <div style={{backgroundColor:"white",height:"140vh",margin:"6vh" ,borderRadius:"4vh"}}>
     <div className='full-container'>
       <div className='title'> Upcoming events</div>
       <div className='list-container'>
@@ -68,16 +69,17 @@ const CheckEvents = () => {
            } </div> 
            <div className='ProprietiesItem'>
             <div className='eventName'> {event.name} </div>
-            <div className='eventDesc'> {event.description} </div>
+            <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
           </div>
           <div className='buttonContainer'>
-          <button onClick={() => handleCLick(event.id)}>More Info</button>
+          <button onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
 
             </div>
 
           </div>
         
         ))}
+      </div>
       </div>
       </div>
   );

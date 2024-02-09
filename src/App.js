@@ -7,7 +7,6 @@ import CheckEvents from './Components/checkEvents';
 import AddWork from './Components/AddWork';
 import Login from './Components/Login';
 import Meeting from './Components/meeting';
-
 import Sidebar from './component/sidebar';
 import AnonymBox from './AnonymBox';
 import  ViewBoxSection from './ViewBoxSection';
@@ -24,8 +23,9 @@ function App() {
     <Router>
       <Routes>
         <Route path='/login' element={<Login></Login>}> </Route>
-        <Route path="/events" Component={CheckEvents}></Route>
-        <Route path="/functionalities" Component={AdminFunctionalities}></Route>
+            <Route path="/events" Component={CheckEvents}></Route>
+               
+           <Route path="/functionalities" Component={AdminFunctionalities}></Route>
         <Route path='/task' element={<TaskContainer/>}  />
 
         <Route path='/meeting' element={<Meeting />} />
