@@ -15,12 +15,12 @@ import Scan from './Components/scan';
 import Confirm from './Components/confirm';
 import AddBlame from './Components/AddBlame';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 
 function App() {
-  const isAdmin = true; // Set your isAdmin logic here
+  
 
   return (
       <>
@@ -33,10 +33,10 @@ function App() {
 
     <Router>
 
-       <div className=" principal" style={{background: "#EBEBEB",height:"150vh"}}> 
+       <div className=" principal" id='greybg' style={{background: "#EBEBEB",height:'150vh'}}> 
 
-          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh",position:"sticky"}}>  
-              <Sidebar isAdmin={isAdmin}  />  
+          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>  
+              <Sidebar   />  
 
           </div > 
           <div className='secondComp'>
