@@ -22,7 +22,7 @@ function Historique(data) {
     return (
         <>
             <ul>
-                {
+                {data.data ?
                     data.data.map(item => (
                         <li className="w-full h-full mb-4">
                             <div className="grid grid-cols-3 ">
@@ -47,7 +47,7 @@ function Historique(data) {
                         </li>
                     )
                     )
-                }
+                    : null}
 
             </ul>
         </>

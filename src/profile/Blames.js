@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ContestModal from './ContestModal';
 
 function Blames(data) {
-    console.log(data);
+
     const [visible, setVisible] = useState(false);
     const [blame, setBlame] = useState({});
     const onClose = () => { setVisible(false); }
@@ -29,13 +29,13 @@ function Blames(data) {
     return (
         <>
             <ul>
-                {
+                {data.data ?
                     data.data.map((item) => {
                         return (<>
                             <li className="w-full h-full mb-4">
                                 <div className="grid grid-cols-4 gap-4  ">
                                     <div className="col-span-1 grid grid-rows-2 place-self-center place-items-center ">
-                                    {parseDateTime(item.dateCreation)}
+                                        {parseDateTime(item.dateCreation)}
                                     </div>
 
                                     <div className="col-span-2 gap-2 flex flex-col place-items-center">
@@ -58,7 +58,7 @@ function Blames(data) {
                         </>
                         )
                     })
-                }
+                    : null}
 
             </ul>
 

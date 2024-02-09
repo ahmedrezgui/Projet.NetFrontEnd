@@ -19,7 +19,7 @@ function Medaille(data) {
     return (
         <>
             <ul>
-                {
+                { data.data ? 
                     data.data.map((item) => {
                         return (
                             <li className="w-full h-full mb-4">
@@ -42,7 +42,7 @@ function Medaille(data) {
                         </li>
                         )
                     })
-                }
+                : null}
                
             </ul>
         </>
