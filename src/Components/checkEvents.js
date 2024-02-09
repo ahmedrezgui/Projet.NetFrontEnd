@@ -4,7 +4,8 @@ const CheckEvents = () => {
   // State to store the fetched events
   const [events, setEvents] = useState([]);
   const [panel,setPanel] = useState(null);
-  const [heightStyle,setHeightStyle]=useState(2)
+  const [heightStyle,setHeightStyle]=useState(30)
+    const [heightItem,setHeightItem]=useState(20)
 
   useEffect(() => {
     // Function to fetch data
@@ -32,7 +33,8 @@ const CheckEvents = () => {
 
 
         data.forEach((e) => {
-          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10.65);
+          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10);
+          console.log(data)
          
         });
         console.log("----------------------------------------"+heightStyle)
@@ -49,7 +51,15 @@ const CheckEvents = () => {
 
  const handleCLick =(id)=>{
   setPanel(panel === id ? null : id);
-}
+     if(panel)
+     { setHeightStyle((prevHeightStyle) => prevHeightStyle + 30);}
+     else
+     {setHeightStyle((prevHeightStyle) => prevHeightStyle - 30);}
+     if(panel === id)
+         setHeightItem((prevh)=> prevh+30)
+     }
+
+
 
   const parseDateTime = (dateTimeString) => {
     // Parse the date string
@@ -92,7 +102,7 @@ const date = formattedDate[4].value
       <div className='title'> Upcoming events</div>
       <div className='list-container'>
         {events.map(event => (
-          <div className='Item' key={event.id} >
+          <div className='Item' key={event.id} style={{height:heightItem+"vh"}}>
             {/* Render event details as needed */}
            <div className='ProprietiesItem'> {
            parseDateTime(event.date)

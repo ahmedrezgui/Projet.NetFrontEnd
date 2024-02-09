@@ -1,4 +1,4 @@
-import {checkAdmin} from "../Helper/utils";
+import {checkLoggedIn} from "../Helper/utils";
 import React, {useEffect, useState} from "react";
 import Loading from "./loading";
 import Sidebar from "../component/sidebar";
@@ -7,16 +7,16 @@ import Sidebar from "../component/sidebar";
 
 const AdminRouteGuard=(props)=>{
 
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isUser, setIsUser] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
-            await checkAdmin(setIsAdmin);
+            await checkLoggedIn(setIsUser);
         };
 
         fetchData(); // Call the async function immediately
 
     }, []);
-    if(isAdmin){
+    if(isUser){
         return (<><div className=" principal" id='greybg' style={{background: "#EBEBEB",height:"auto",minHeight:"100vh",paddingBottom:"6vh"}}>
 
             <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>
@@ -24,7 +24,7 @@ const AdminRouteGuard=(props)=>{
 
             </div >
             <div className='secondComp'>
-            {props.component}
+                {props.component}
             </div>
         </div>
         </>)

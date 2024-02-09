@@ -35,7 +35,7 @@
   
 .Item {
     border-bottom: 1px solid #ccc;
-    margin-top: 20px;
+
     display: grid;
     column-gap: 50px;
     grid-template-columns: 30% 50% 20%;
