@@ -4,6 +4,7 @@ const CheckEvents = () => {
   // State to store the fetched events
   const [events, setEvents] = useState([]);
   const [panel,setPanel] = useState(null);
+  const [heightStyle,setHeightStyle]=useState(2)
 
   useEffect(() => {
     // Function to fetch data
@@ -25,8 +26,17 @@ const CheckEvents = () => {
         // Parse the JSON data
         const data = await response.json();
         console.log(data);
+
         // Update the state with the fetched events
         setEvents(data);
+
+
+        data.forEach((e) => {
+          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10.65);
+         
+        });
+        console.log("----------------------------------------"+heightStyle)
+
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -69,7 +79,7 @@ const month = formattedDate[2].value
 const date = formattedDate[4].value
   return ( <>
   
-    <div style={{backgroundColor:"white",width:"3/4",marginLeft:"40px" ,borderRadius:"4vh"}}>
+    <div style={{backgroundColor:"white",width:"3/4",marginLeft:"40px",height:heightStyle+"vh" ,borderRadius:"4vh"}}>
     <div className="time">
                 <h1 className="daydate">
                     <span>{day}, {date}</span>
@@ -103,6 +113,7 @@ const date = formattedDate[4].value
       </div>
       </div>
       </>
+
   );
 };
 

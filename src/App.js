@@ -15,12 +15,13 @@ import Scan from './Components/scan';
 import Confirm from './Components/confirm';
 import AddBlame from './Components/AddBlame';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 
 function App() {
-  const isAdmin = true; // Set your isAdmin logic here
+
+  
 
   return (
       <>
@@ -31,29 +32,31 @@ function App() {
 
           </Router>
 
-    <Router>
+          <Router>
 
-       <div className=" principal" style={{background: "#EBEBEB",height:"150vh"}}> 
-          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
-              <Sidebar isAdmin={isAdmin} />  
-          </div > 
-          <div className='secondComp'>
-            <Routes>
+              <div className=" principal" id='greybg' style={{background: "#EBEBEB",height:"auto",minHeight:"150vh",paddingBottom:"6vh"}}>
 
-              <Route path="/events" Component={CheckEvents}></Route>
-              <Route path="/functionalities" Component={AdminFunctionalities}></Route>
-              <Route path='/task' element={<TaskContainer/>}  />
-              <Route path='/meeting' element={<Meeting />} />
-              <Route path='/anonymbox' element={<AnonymBox/>}/>
-              <Route path='/profile' element={<Profile />} />
-              <Route path="/scan/:meetingId" element={<Scan/>} />
-              <Route path='/comments' element={<ViewBoxSection/>}/>
-                 <Route path='/blames' element={<AddBlame/>}/>
-            </Routes>
-            </div>
-       </div> 
+                  <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>
+                      <Sidebar   />
 
-    </Router>
+                  </div >
+                  <div className='secondComp'>
+                      <Routes>
+
+                          <Route path="/events" Component={CheckEvents}></Route>
+                          <Route path="/functionalities" Component={AdminFunctionalities}></Route>
+                          <Route path='/task' element={<TaskContainer/>}  />
+                          <Route path='/meeting' element={<Meeting />} />
+                          <Route path='/anonymbox' element={<AnonymBox/>}/>
+                          <Route path='/profile' element={<Profile />} />
+                          <Route path="/scan/:meetingId" element={<Scan/>} />
+                          <Route path='/comments' element={<ViewBoxSection/>}/>
+                          <Route path='/blames' element={<AddBlame/>}/>
+                      </Routes>
+                  </div>
+              </div>
+
+          </Router>
 
       </>
   );

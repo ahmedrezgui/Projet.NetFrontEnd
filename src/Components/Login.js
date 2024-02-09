@@ -61,6 +61,7 @@ const Login = ({setAuthenticated, redirect}) => {
               if(redirect){
                 setAuthenticated('authenticated')
               }
+              window.location.href = "/meeting";
 
 
           } else {
