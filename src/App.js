@@ -16,6 +16,9 @@ import Confirm from './Components/confirm';
 import AddBlame from './Components/AddBlame';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useEffect, useState} from "react";
+import AdminRouteGuard from "./Components/AdminRouteGuard";
+import UserRouteGuard from "./Components/UserRouteGuard";
+import checkEvents from "./Components/checkEvents";
 
 
 
@@ -34,27 +37,20 @@ function App() {
 
           <Router>
 
-              <div className=" principal" id='greybg' style={{background: "#EBEBEB",height:"auto",minHeight:"150vh",paddingBottom:"6vh"}}>
 
-                  <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{position:"fixed"}}>
-                      <Sidebar   />
-
-                  </div >
-                  <div className='secondComp'>
                       <Routes>
 
-                          <Route path="/events" Component={CheckEvents}></Route>
-                          <Route path="/functionalities" Component={AdminFunctionalities}></Route>
-                          <Route path='/task' element={<TaskContainer/>}  />
-                          <Route path='/meeting' element={<Meeting />} />
-                          <Route path='/anonymbox' element={<AnonymBox/>}/>
-                          <Route path='/profile' element={<Profile />} />
-                          <Route path="/scan/:meetingId" element={<Scan/>} />
-                          <Route path='/comments' element={<ViewBoxSection/>}/>
-                          <Route path='/blames' element={<AddBlame/>}/>
+                          <Route path="/events" element={<UserRouteGuard component={<CheckEvents></CheckEvents>     }></UserRouteGuard>}></Route>
+                          <Route path="/functionalities" element={<AdminRouteGuard component={<AdminFunctionalities></AdminFunctionalities>}></AdminRouteGuard>}></Route>
+                          <Route path='/task' element={<UserRouteGuard component={<TaskContainer/>     }></UserRouteGuard>}   />
+                          <Route path='/meeting'  element={<UserRouteGuard component={<Meeting />    }></UserRouteGuard>} />
+                          <Route path='/anonymbox' element={<UserRouteGuard component={<AnonymBox/>   }></UserRouteGuard>}/>
+                          <Route path='/profile' element={<UserRouteGuard component={<Profile />  }></UserRouteGuard>} />
+                          <Route path="/scan/:meetingId" element={<UserRouteGuard component={<Scan/>  }></UserRouteGuard>} />
+                          <Route path='/comments' element={<UserRouteGuard component={<ViewBoxSection/> }></UserRouteGuard>} />
+                          <Route path='/blames' element={<UserRouteGuard component={<AddBlame/>   }></UserRouteGuard>} />
                       </Routes>
-                  </div>
-              </div>
+
 
           </Router>
 

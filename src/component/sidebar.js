@@ -61,7 +61,7 @@ const Sidebar = (props) => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    window.location.href = "/login";
   };
 
   return (
