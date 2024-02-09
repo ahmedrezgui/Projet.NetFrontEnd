@@ -12,10 +12,10 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
     return (<>
 
             <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"150vh"}}>
-                <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
+                {/* <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
                 <Sidebar ></Sidebar>
-                </div >
-                <div style={{backgroundColor:"white",height: functionality==="Add/Remove Member"?"140vh": "130vh",marginTop:"6vh",borderRadius:"4vh"}}>
+                </div > */}
+                <div style={{backgroundColor:"white",height: functionality==="Add/Remove Member"?"140vh": "130vh"}}>
                     <div className="row-span-1 grid grid-cols-4 w-full px-10 pt-6 pb-4"  >
                         <div className="col-span-1 flex justify-center pl-10 mb-4">
                             <svg width="150" height="140" viewBox="0 0 161 161" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -18,32 +18,30 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
-  const isAdmin = false; // Set your isAdmin logic here
+  const isAdmin = true; // Set your isAdmin logic here
   return (
     <Router>
-      <Routes>
-        <Route path='/login' element={<Login></Login>}> </Route>
-            <Route path="/events" Component={CheckEvents}></Route>
-               
-           <Route path="/functionalities" Component={AdminFunctionalities}></Route>
-        <Route path='/task' element={<TaskContainer/>}  />
 
-        <Route path='/meeting' element={<Meeting />} />
-        <Route path='/anonymbox' element={<AnonymBox/>}/>
-        <Route path='/profile' element={<Profile />} />
-        <Route path="/" element={<Sidebar isAdmin={isAdmin} />}/>
-        <Route path="/scan/:meetingId" element={<Scan/>} />
+       <div className=" principal" style={{background: "#EBEBEB",height:"150vh"}}> 
+          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>  
+              <Sidebar isAdmin={isAdmin} />  
+          </div > 
+          <div className='secondComp'>
+            <Routes>
+              <Route path='/login' element={<Login></Login>}> </Route>
+              <Route path="/events" Component={CheckEvents}></Route>
+              <Route path="/functionalities" Component={AdminFunctionalities}></Route>
+              <Route path='/task' element={<TaskContainer/>}  />
+              <Route path='/meeting' element={<Meeting />} />
+              <Route path='/anonymbox' element={<AnonymBox/>}/>
+              <Route path='/profile' element={<Profile />} />
+              <Route path="/scan/:meetingId" element={<Scan/>} />
+              <Route path='/comments' element={<ViewBoxSection/>}/>
+                 <Route path='/blames' element={<AddBlame/>}/>
+            </Routes>
+            </div>
+       </div> 
 
-
-        <Route path='/comments' element={<ViewBoxSection/>}/>
-        <Route path='/blames' element={<AddBlame/>}/>
-
-
-
-
-        <Route path="/login">
-        </Route>
-      </Routes>
     </Router>
   );
 }
