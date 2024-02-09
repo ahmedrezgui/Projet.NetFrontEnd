@@ -18,8 +18,8 @@ function App() {
   return (
     <Router>
        <div className=" principal" style={{background: "#EBEBEB",height:"150vh"}}> 
-          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>  
-              <Sidebar isAdmin={isAdmin} />  
+          <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh",position:"sticky"}}>  
+              <Sidebar isAdmin={isAdmin}  />  
           </div > 
           <div className='secondComp'>
             <Routes>
