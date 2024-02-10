@@ -18,7 +18,21 @@ const AddMeetings = (props) => {
   const [day, setDay] = useState('jj/mm/aaaa');
   const [hour, setHour] = useState('--:--');
   const [formErrors, setFormErrors] = useState({});
- 
+  const [generalSuccess, setGeneralSuccess] = useState('');
+
+  useEffect(() => {
+    let timeoutId;
+    if (generalSuccess !== '') {
+        timeoutId = setTimeout(() => {
+            setGeneralSuccess('');
+        }, 4000); // 30 seconds
+    }
+
+    return () => {
+        clearTimeout(timeoutId);
+    };
+}, [generalSuccess]);
+
   const handleSelectChange = (memberId) => {
     // Check if the memberId is already in selectedMembers
     if (selectedMembers.includes(memberId)) {
@@ -53,7 +67,7 @@ const AddMeetings = (props) => {
       errors.location="Location is required"
     }
 
-    if(!selectedMembers.length===0)
+    if(selectedMembers.length===0)
     {
       errors.selectedMembers="At least one member is required"
     }
@@ -64,9 +78,7 @@ const AddMeetings = (props) => {
       const users = selectedMembers.map((value, index) => ({ id: value }));
 
       let token=localStorage.getItem('JwtToken');
-      let id= "3fa85f64-5717-4562-b3fc-2c963f66afa6";
       const meetingData = {
-        id,
         name,
         date: `${day}T${hour}:00Z`,
         location,
@@ -85,15 +97,20 @@ const AddMeetings = (props) => {
           body: JSON.stringify(meetingData),
         });
 
-        if (!response.ok) {
+        if (!response.ok)  if(response.status===401){
+          window.location.href = '/login';
+      }
+      else {
+
           throw new Error('Network response was not ok');
-        }
+      }
 
         console.log('Event data posted successfully!');
         // Handle any additional actions upon successful submission
       } catch (error) {
         console.error('Error posting event data:', error);
       }
+      setGeneralSuccess('Meeting added successfully')
       setSelectedMembers([]);
       setDescripion('');
       setName('');
@@ -128,11 +145,14 @@ const AddMeetings = (props) => {
 <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
+
                     />       
-                    <div className='error' >{formErrors.selectedMembers && <div className="error">{formErrors.selectedMembers}</div>}
-              </div>
+                
                      <div className='right-panel-2'>
            {/* Text Input */}
+           {generalSuccess!=='' ? <div style={{color:"green"}}>{generalSuccess}</div>: ""}
+
         <Form.Group controlId="name">
           <Form.Label>Insert Meeting Info</Form.Label>
           <Form.Control type="text"  placeholder="Enter some text" className='input'  value={name}

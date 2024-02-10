@@ -1,8 +1,17 @@
 import React from 'react';
 import './TaskCard.css';
 import Icon from './icon';
+const currentDate = new Intl.DateTimeFormat("en-us",{
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
 function TaskCard({title,deadline}) {
     return (
+       
+        
             <div className='anas-taskcard anas-gris'>
                 <div className='anas-container'>
                     <div className='anas-titre'> {title}
@@ -21,6 +30,9 @@ function TaskCard({title,deadline}) {
                     </a>
                 </div>
             </div>
+           
+
+
        
     );
   }

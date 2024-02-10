@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Style/addEvents.css';
 import { Form, Button } from 'react-bootstrap';
 import MembersSelect from './membersSelect';
 
-  
-
 const AddTasks = (props) => {  
-  
+  const [generalSuccess, setGeneralSuccess] = useState('');
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [description, setDescripion] = useState('');
   const [name, setName] = useState('');
   const [day, setDay] = useState('jj/mm/aaaa');
   const [formErrors, setFormErrors] = useState({});
+
+  useEffect(() => {
+    let timeoutId;
+    if (generalSuccess !== '') {
+        timeoutId = setTimeout(() => {
+            setGeneralSuccess('');
+        }, 4000); // 30 seconds
+    }
+
+    return () => {
+        clearTimeout(timeoutId);
+    };
+}, [generalSuccess]);
 
   const handleSelectChange = (memberId) => {
     // Check if the memberId is already in selectedMembers
@@ -43,18 +54,23 @@ const AddTasks = (props) => {
     if (!description.trim()) {
         errors.description = 'Details are required';
       }
+      if(selectedMembers.length===0)
+      {
+        errors.selectedMembers="At least one member is required";
+      }
+  
     
 
 
     // Add more validation as needed
 
     if (Object.keys(errors).length === 0) {
-      const users = selectedMembers.map((value, index) => (value));
+      const users = selectedMembers.map((value, index) => ({ id: value }));
 
       let token=localStorage.getItem('JwtToken');
       const taskData = {
         name,
-        deadLine: `${day}T23:59:59:00Z`,
+        deadLine: `${day}T23:59:59Z`,
         description,
         users
             };
@@ -70,15 +86,20 @@ const AddTasks = (props) => {
           body: JSON.stringify(taskData),
         });
 
-        if (!response.ok) {
+        if (!response.ok)  if(response.status===401){
+          window.location.href = '/login';
+      }
+      else {
+
           throw new Error('Network response was not ok');
-        }
+      }
 
         console.log('Event data posted successfully!');
         // Handle any additional actions upon successful submission
       } catch (error) {
         console.error('Error posting event data:', error);
       }
+      setGeneralSuccess('Task added successfully')
       setSelectedMembers([]);
       setDescripion('');
       setName('');
@@ -95,9 +116,12 @@ const AddTasks = (props) => {
      <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
                     />
+      
         <div className='right-panel-2'>
            {/* Text Input */}
+           {generalSuccess!=='' ? <div style={{color:"green"}}>{generalSuccess}</div>: ""}
         <Form.Group controlId="name">
           <Form.Label>Insert Task Name</Form.Label>
           <Form.Control type="text"  placeholder="Enter some text" className='input'  value={name}

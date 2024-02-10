@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import '../Style/addEvents.css';
 import { Container, Form, Button } from 'react-bootstrap';
 import { PiSelectionDuotone } from "react-icons/pi";
@@ -16,7 +16,20 @@ const AddEvents = (props) => {
   const [day, setDay] = useState('jj/mm/aaaa');
   const [hourIn, setHourIn] = useState('--:--');
   const [formErrors, setFormErrors] = useState({});
-  
+  const [generalSuccess, setGeneralSuccess] = useState('');
+
+  useEffect(() => {
+    let timeoutId;
+    if (generalSuccess !== '') {
+        timeoutId = setTimeout(() => {
+            setGeneralSuccess('');
+        }, 4000); // 30 seconds
+    }
+
+    return () => {
+        clearTimeout(timeoutId);
+    };
+}, [generalSuccess]);
   const handleSelectChange = (memberId) => {
     // Check if the memberId is already in selectedMembers
     if (selectedMembers.includes(memberId)) {
@@ -104,9 +117,13 @@ const AddEvents = (props) => {
           body: JSON.stringify(eventData),
         });
 
-        if (!response.ok) {
+        if (!response.ok)  if(response.status===401){
+          window.location.href = '/login';
+      }
+      else {
+
           throw new Error('Network response was not ok');
-        }
+      }
 
         console.log('Event data posted successfully!');
         // Handle any additional actions upon successful submission
@@ -117,6 +134,8 @@ const AddEvents = (props) => {
       // If no errors, submit the form or perform the desired action
       console.log(selectedMembers);
       console.log('Form submitted successfully!');
+      setGeneralSuccess('Events added successfully')
+
       setSelectedMembers([]);
       setDescripion('');
       setName('');
@@ -138,9 +157,12 @@ const AddEvents = (props) => {
         <MembersSelect members={props.members} 
                     selectedMembers={selectedMembers}
                     handleSelectChange={handleSelectChange}
+                    formErrors={formErrors}
+
                     />
         <div className='right-panel-2'>
            {/* Text Input */}
+           {generalSuccess!=='' ? <div style={{color:"green"}}>{generalSuccess}</div>: ""}
         <Form.Group controlId="name">
           <Form.Label>Insert Event Info</Form.Label>
           <Form.Control type="text"  placeholder="Enter some text" className='input'  value={name}

@@ -4,6 +4,8 @@ const CheckEvents = () => {
   // State to store the fetched events
   const [events, setEvents] = useState([]);
   const [panel,setPanel] = useState(null);
+  const [heightStyle,setHeightStyle]=useState(70)
+    const [heightItem,setHeightItem]=useState(20)
 
   useEffect(() => {
     // Function to fetch data
@@ -25,8 +27,18 @@ const CheckEvents = () => {
         // Parse the JSON data
         const data = await response.json();
         console.log(data);
+
         // Update the state with the fetched events
         setEvents(data);
+
+
+        data.forEach((e) => {
+          setHeightStyle((prevHeightStyle) => prevHeightStyle + 10);
+          console.log(data)
+         
+        });
+        console.log("----------------------------------------"+heightStyle)
+
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -38,8 +50,11 @@ const CheckEvents = () => {
   
 
  const handleCLick =(id)=>{
-   setPanel(id);
-  }
+  setPanel(panel === id ? null : id);
+
+     }
+
+
 
   const parseDateTime = (dateTimeString) => {
     // Parse the date string
@@ -55,8 +70,29 @@ const CheckEvents = () => {
         <div>{time}</div>
       </div>
     );
+    
   };
-  return (
+  const currentDate = new Intl.DateTimeFormat("en-us",{
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+const formattedDate = currentDate.formatToParts()
+const day = formattedDate[0].value
+const month = formattedDate[2].value
+const date = formattedDate[4].value
+  return ( <>
+  
+    <div style={{backgroundColor:"white",width:"3/4",marginLeft:"40px",height:heightStyle+"vh" ,borderRadius:"4vh"}}>
+    <div className="time">
+                <h1 className="daydate">
+                    <span>{day}, {date}</span>
+                </h1>
+                <h2 className="month">
+                    <span>{month}</span>
+                </h2>
+            </div>
     <div className='full-container'>
       <div className='title'> Upcoming events</div>
       <div className='list-container'>
@@ -67,11 +103,11 @@ const CheckEvents = () => {
            parseDateTime(event.date)
            } </div> 
            <div className='ProprietiesItem'>
-            <div className='eventName'> {event.name} </div>
-            <div className='eventDesc'> {event.description} </div>
+            <div className={panel === event.id ? 'eventName selected' : 'eventName'}> {event.name} </div>
+            <div className={panel === event.id ? 'eventDesc selected' : 'eventDesc'}> {event.description} </div>
           </div>
           <div className='buttonContainer'>
-          <button onClick={() => handleCLick(event.id)}>More Info</button>
+          <button onClick={() => handleCLick(event.id)}>{panel === event.id ? 'Less Info' : 'More Info'}</button>
 
             </div>
 
@@ -80,6 +116,9 @@ const CheckEvents = () => {
         ))}
       </div>
       </div>
+      </div>
+      </>
+
   );
 };
 

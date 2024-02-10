@@ -1,6 +1,8 @@
 import React ,{useState , useEffect} from 'react';
 import '../Style/addEvents.css';
 import Sidebar from '../component/sidebar'
+import AddRemoveMember from "./AddRemoveMember";
+
 
 import AddWork from "./AddWork";
 import AddBlame from './AddBlame';
@@ -8,13 +10,61 @@ import AddBlame from './AddBlame';
 const AdminFunctionalities = () => {
 const [functionality, setfunctionality] = useState('Add/Remove Member');
 
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+
+    const [user, setUser] = useState({});
+    const getUserHistory = async () => {
+        let token = localStorage.getItem('JwtToken');
+        try {
+            // Fetch data from the API
+            const response = await fetch('https://localhost:7181/profile', {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                }
+            });
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Parse the JSON data
+            const data = await response.json();
+            console.log(data)
+            setUser(data.userData);
+
+
+        } catch (error) {
+            console.error('Error fetching historique:', error);
+        }
+    };
+
+    useEffect(() => {
+        getUserHistory();
+
+    }, []);
+
+
+
+
+
+    {/* useEffect(() => {
+        const fetchData = async () => {
+            await checkLoggedIn(setIsDataLoaded)
+
+        };
+
+        fetchData(); // Call the async function immediately
+
+    }, []);*/}
+
     return (<>
 
-            <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"150vh"}}>
-                <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
+            <div className=" flex  justify-center" style={{background: "#EBEBEB",height:"auto"}}>
+                {/* <div className=" my-10 rounded-3xl mr-10 w-1/5" style={{height:"90vh"}}>
                 <Sidebar ></Sidebar>
-                </div >
-                <div style={{backgroundColor:"white",height:"130vh",marginTop:"6vh",borderRadius:"4vh"}}>
+                </div > */}
+                <div style={{backgroundColor:"white",height: functionality==="Add/Remove Member"?"140vh": "130vh"}}>
                     <div className="row-span-1 grid grid-cols-4 w-full px-10 pt-6 pb-4"  >
                         <div className="col-span-1 flex justify-center pl-10 mb-4">
                             <svg width="150" height="140" viewBox="0 0 161 161" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +77,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
                             </svg>
                         </div>
                         <div className="flex flex-col justify-start col-span-2 pt-4 ml-2" style={{marginBottom:"2vh"}}>
-                            <div className="text-2xl font-bold">Cactus Cactus</div>
+                            <div className="text-2xl font-bold">{user.firstName} {user.lastName}</div>
                             <div className="text-lg font-semibold">Enactus INSAT Team Member</div>
                             <div>Departement Marketing</div>
                         </div>
@@ -47,6 +97,7 @@ const [functionality, setfunctionality] = useState('Add/Remove Member');
                     </div>
                     {functionality==="Add Task" ? <AddWork/> : <></>}
                     {functionality==="Add Blame" ? <AddBlame/> : <></>}
+                    {functionality==="Add/Remove Member" ? <AddRemoveMember/> : <></>}
 
                 </div>
 
