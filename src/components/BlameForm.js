@@ -106,9 +106,10 @@ const BlameForm = (props) => {
 
               {/* Submit Button */}
               <div className='centered-button-container '>
-              <Button variant="primary" type="submit" className='button' >
+              <Button variant="primary" type="submit" className='button'  style={{border:"none"}}>
                 Confirm
               </Button>
+
               </div>
             </Form>
           </div>
